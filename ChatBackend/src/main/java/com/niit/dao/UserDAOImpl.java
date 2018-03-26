@@ -1,7 +1,10 @@
 package com.niit.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.niit.model.Job;
@@ -10,7 +13,6 @@ import com.niit.model.User;
 public class UserDAOImpl implements UserDAO {
 	@Autowired
 	SessionFactory sessionFactory;
-	@Override
 	public boolean addUser(User user) {
 		try
 		{
@@ -24,7 +26,6 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	@Override
 	public boolean deleteUser(User user) {
 		try
 		{
@@ -36,7 +37,6 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	@Override
 	public boolean updateUser(User user) {
 		try
 		{
@@ -48,7 +48,6 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	@Override
 	public User getUser(int id) {
 		try{
 			Session session=sessionFactory.openSession();
@@ -61,6 +60,14 @@ public class UserDAOImpl implements UserDAO {
 		{
 			return null;
 		}
+	}
+
+	public List<User> listUser(String email) {
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from User where email=:email");
+		query.setParameter("email",email);
+		List<User> listUsers=query.list();
+		return listUsers;
 	}
 
 }

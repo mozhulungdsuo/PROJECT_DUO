@@ -4,19 +4,27 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table
 public class Forum {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="forum_sequence", strategy= GenerationType.SEQUENCE)
+	@SequenceGenerator(name="forum_sequence", sequenceName="forum_seq", initialValue=1, allocationSize=1)
 	int forumId;
 	String forumName;
 	String forumContent;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	Date createdate;
-	String username;
+	String username;	
+	String status;
+	int likes;
 	public int getForumId() {
 		return forumId;
 	}
@@ -53,5 +61,10 @@ public class Forum {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	String status;
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
 }

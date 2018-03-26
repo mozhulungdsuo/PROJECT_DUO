@@ -9,6 +9,6 @@ public boolean addUser(User user);
 public boolean deleteUser(User user);
 public boolean updateUser(User user);
 public User getUser(int id);
-//public List<User> listUser();
+public List<User> listUser(String email);
 
 }

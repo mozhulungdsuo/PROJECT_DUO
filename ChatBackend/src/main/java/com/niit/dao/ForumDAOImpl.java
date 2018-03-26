@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Blog;
 import com.niit.model.Forum;
+import com.niit.model.ForumComment;
 
 public class ForumDAOImpl implements ForumDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 	@Transactional
-	@Override
 	public boolean addForum(Forum forum) {
 		try
 		{
@@ -28,7 +28,6 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 	@Transactional
-	@Override
 	public boolean deleteForum(Forum forum) {
 		try
 		{
@@ -40,7 +39,6 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 	@Transactional
-	@Override
 	public boolean updateForum(Forum forum) {
 		try
 		{
@@ -52,7 +50,6 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 	@Transactional
-	@Override
 	public Forum getForum(int forumId) {
 		try{
 			Session session=sessionFactory.openSession();
@@ -66,7 +63,6 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 	@Transactional
-	@Override
 	public boolean approveForum(Forum forum) {
 		try{
 			forum.setStatus("A");
@@ -78,7 +74,6 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 	@Transactional
-	@Override
 	public boolean rejectForum(Forum forum) {
 		try{
 			forum.setStatus("NA");
@@ -90,7 +85,6 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 	@Transactional
-	@Override
 	public List<Forum> listForum(String username) {
 Session session=sessionFactory.openSession();
 		
@@ -98,6 +92,62 @@ Session session=sessionFactory.openSession();
 		query.setParameter("name", username);//user1 is a preexisting user
 		List<Forum> pl=query.getResultList();
 		return pl;
+	}
+	public boolean incrementLikes(Forum forum) {
+		try
+		{
+			int likes=forum.getLikes();
+			likes++;
+			forum.setLikes(likes);
+			sessionFactory.getCurrentSession().update(forum);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	public boolean addForumComment(ForumComment forumComment) {
+		try
+		{
+			sessionFactory.getCurrentSession().save(forumComment);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	public boolean deleteForumComment(ForumComment forumComment) {
+		try
+		{
+			sessionFactory.getCurrentSession().delete(forumComment);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	public ForumComment getForumComment(int commentId) {
+		try
+		{
+			Session session=sessionFactory.openSession();
+			ForumComment forumComment=session.get(ForumComment.class,commentId);
+			session.close();
+			return forumComment;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
+	public List<ForumComment> listForumComment(int forumId) {
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from ForumComment where forumId=:forumId");
+		query.setParameter("forumId",forumId);		
+		List<ForumComment> listForumComment=((org.hibernate.query.Query) query).list();
+		return listForumComment;
 	}
 
 }

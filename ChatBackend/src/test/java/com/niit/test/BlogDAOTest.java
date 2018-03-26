@@ -19,7 +19,7 @@ import com.niit.model.Blog;
 @Transactional
 public class BlogDAOTest {
 	
-/*	private static DBConfig config;
+	private static DBConfig config;
 	@Autowired
 	private static BlogDAO blogDAO;
 	
@@ -73,11 +73,11 @@ public class BlogDAOTest {
 		assertEquals("NA",blog.getStatus());
 	    
 		
-		blogDAO.deleteBLog(blog);
+		blogDAO.deleteBlog(blog);
 		assertNull(blogDAO.getBlog(id));
 	    
 	
 	}
-	*/
+	
 
 }

@@ -1,19 +1,29 @@
 package com.niit.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table
 public class Job {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="job_sequence", strategy= GenerationType.SEQUENCE)
+	@SequenceGenerator(name="job_sequence", sequenceName="job_seq", initialValue=1, allocationSize=1)
 	int jobId;
 	String jobTitle;
 	String jobDescripton;
 	double salary;
+	String Company;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    Date finalDate;
 	public int getJobId() {
 		return jobId;
 	}
@@ -38,6 +48,19 @@ public class Job {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
+	public String getCompany() {
+		return Company;
+	}
+	public void setCompany(String company) {
+		Company = company;
+	}
+	public Date getFinalDate() {
+		return finalDate;
+	}
+	public void setFinalDate(Date finalDate) {
+		this.finalDate = finalDate;
+	}
+
 	
 	
 }

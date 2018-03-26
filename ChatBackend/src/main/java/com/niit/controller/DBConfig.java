@@ -24,8 +24,8 @@ import com.niit.model.Forum;
 @ComponentScan("com.niit")
 @EnableTransactionManagement
 public class DBConfig {
-	  //@Autowired
-	  //  @Bean(name="datasource")
+	  @Autowired
+	  @Bean(name="datasource")
 	public DataSource getDataSource()
 	{
 	DriverManagerDataSource dataSource=new DriverManagerDataSource();
@@ -37,7 +37,7 @@ public class DBConfig {
 	return dataSource;
 	
 	}
-	  //@Autowired
+	 @Autowired
 	@Bean(name="sessionFactory")
 	public SessionFactory getSessionFactory()
 	{
@@ -47,7 +47,7 @@ public class DBConfig {
 		hibernateProp.put("hibernate.show_sql","true");
 		LocalSessionFactoryBuilder sessionFactoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
 		sessionFactoryBuilder.addAnnotatedClass(Blog.class);
-		sessionFactoryBuilder.addAnnotatedClass(Forum.class);
+		//sessionFactoryBuilder.addAnnotatedClass(Forum.class);
 		sessionFactoryBuilder.addProperties(hibernateProp);
 		System.out.println("Table created???");
 		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
@@ -63,11 +63,11 @@ public class DBConfig {
 	{
 		return new BlogDAOImpl();
 	}
-	@Bean(name="forumDAO")
+	/*@Bean(name="forumDAO")
 	public ForumDAO getForumDAO()
 	{
 		return new ForumDAOImpl();
-	}
+	}*/
 	
 	@Bean
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
