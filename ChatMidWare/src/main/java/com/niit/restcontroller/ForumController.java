@@ -48,7 +48,7 @@ public class ForumController {
 		System.out.println("rest controller in add");
 		
 		forum.setCreatedate(new java.util.Date());
-		forum.setLikes(0);
+	
 		forum.setUsername("aben");
 		forum.setStatus("A");
 		if(forumDAO.addForum(forum))
