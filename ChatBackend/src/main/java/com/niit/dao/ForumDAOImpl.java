@@ -93,20 +93,7 @@ Session session=sessionFactory.openSession();
 		List<Forum> pl=query.getResultList();
 		return pl;
 	}
-	public boolean incrementLikes(Forum forum) {
-		try
-		{
-			int likes=forum.getLikes();
-			likes++;
-			forum.setLikes(likes);
-			sessionFactory.getCurrentSession().update(forum);
-			return true;
-		}
-		catch(Exception e)
-		{
-			return false;
-		}
-	}
+	
 	public boolean addForumComment(ForumComment forumComment) {
 		try
 		{

@@ -14,7 +14,7 @@ public interface ForumDAO {
 	public boolean approveForum(Forum forum);
 	public boolean rejectForum(Forum forum);
 	public List<Forum> listForum(String username);
-    public boolean incrementLikes(Forum forum);
+ 
 	
 	
 	public boolean addForumComment(ForumComment forumComment);

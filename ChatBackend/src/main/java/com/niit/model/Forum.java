@@ -24,7 +24,7 @@ public class Forum {
 	Date createdate;
 	String username;	
 	String status;
-	int likes;
+	
 	public int getForumId() {
 		return forumId;
 	}
@@ -61,10 +61,5 @@ public class Forum {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getLikes() {
-		return likes;
-	}
-	public void setLikes(int likes) {
-		this.likes = likes;
-	}
+	
 }
