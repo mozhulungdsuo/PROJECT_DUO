@@ -105,4 +105,18 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	public User getUser(String userName) {
+		try
+		{
+			Session session=sessionFactory.openSession();
+			User user=session.get(User.class,userName);
+			session.close();
+			return user;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
+
 }

@@ -17,8 +17,9 @@ public class User {
 	@Id
 	@GeneratedValue(generator="user_sequence", strategy= GenerationType.SEQUENCE)
 	@SequenceGenerator(name="user_sequence", sequenceName="user_seq", initialValue=1, allocationSize=1)
-	int userId;
 	String userName;
+	//int userId;
+	
 	String email;
 	int age;
 	String role;
@@ -29,12 +30,12 @@ public class User {
 	String password;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	Date dob;
-	public int getUserId() {
+	/*public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
+	}*/
 	public String getUserName() {
 		return userName;
 	}

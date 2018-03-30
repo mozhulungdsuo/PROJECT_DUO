@@ -8,7 +8,8 @@ public interface UserDAO {
 public boolean addUser(User user);
 public boolean deleteUser(User user);
 public boolean updateUser(User user);
-public User getUser(int id);
+//public User getUser(int id);
+public User getUser(String userName);
 public List<User> listUser(String email);
 public boolean checkLogin(User user);
 public boolean updateOnlineStatus(String status, User user);
