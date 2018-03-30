@@ -6,10 +6,10 @@ myApp.config(function($routeProvider) {
 		templateUrl : "/index.jsp"
 	})
 	.when("/Login", {
-		templateUrl : "Login.html"
+		templateUrl : "views/Login.html"
 	})
 	.when("/Register", {
-		templateUrl : "Register.html"
+		templateUrl : "views/Register.html"
 	})
 	.when("/About Us", {
 		templateUrl : "/AboutUs.htm"
