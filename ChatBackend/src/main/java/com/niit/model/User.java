@@ -21,6 +21,7 @@ public class User {
 	String userName;
 	String email;
 	int age;
+	String role;
 	String gender;
 	String contactNo;	
 	String password;
