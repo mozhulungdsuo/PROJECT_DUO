@@ -15,7 +15,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-<script src="MyRoute.js"></script>
+<script src="js/MyRoute.js"></script>
 <style>
 .navbar-brand {
 	padding: 0px;
