@@ -70,4 +70,39 @@ public class UserDAOImpl implements UserDAO {
 		return listUsers;
 	}
 
+	public boolean checkLogin(User user) {
+		try
+		{
+			Session session=sessionFactory.openSession();
+			Query query=session.createQuery("from User where userName=:userName and password=:pass");
+			query.setParameter("userName",user.getUserName());
+			query.setParameter("pass", user.getPassword());
+			User users=(User)query.list().get(0);
+			if(users==null)
+				return false;
+			else
+				return true;
+			
+	  }
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+
+	public boolean updateOnlineStatus(String status, User user) {
+		try
+		{
+			user.setStatus(status);
+			sessionFactory.getCurrentSession().update(user);
+			return true;
+		
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
+	}
+
 }

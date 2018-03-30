@@ -10,5 +10,7 @@ public boolean deleteUser(User user);
 public boolean updateUser(User user);
 public User getUser(int id);
 public List<User> listUser(String email);
+public boolean checkLogin(User user);
+public boolean updateOnlineStatus(String status, User user);
 
 }
