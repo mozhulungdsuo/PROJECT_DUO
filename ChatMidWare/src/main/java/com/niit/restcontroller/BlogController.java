@@ -29,7 +29,7 @@ public class BlogController {
 		@GetMapping(value="/listBlogs")
 		public ResponseEntity<List<Blog>>  getListBlogs()
 		{
-			List<Blog> listBlogs=blogDAO.listBlog("Tavera");
+			List<Blog> listBlogs=blogDAO.listBlog("Ben");
 			if(listBlogs.size()>0)
 			{
 			return new ResponseEntity<List<Blog>>(listBlogs,HttpStatus.OK);
