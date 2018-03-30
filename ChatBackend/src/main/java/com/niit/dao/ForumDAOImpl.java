@@ -7,12 +7,13 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Blog;
 import com.niit.model.Forum;
 import com.niit.model.ForumComment;
-
+@Repository("forumDAO")
 public class ForumDAOImpl implements ForumDAO {
 	@Autowired
 	SessionFactory sessionFactory;

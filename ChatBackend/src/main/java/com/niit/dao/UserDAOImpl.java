@@ -6,10 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.niit.model.Job;
 import com.niit.model.User;
-
+@Repository("userDAO")
 public class UserDAOImpl implements UserDAO {
 	@Autowired
 	SessionFactory sessionFactory;

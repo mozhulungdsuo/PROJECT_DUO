@@ -16,63 +16,36 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 <script src="js/MyRoute.js"></script>
-<style>
-.navbar-brand {
-	padding: 0px;
-}
+<script src="c_blog/BlogController.js"></script>
+<script src="c_user/UserController.js"></script>
 
-.navbar-brand>img {
-	height: 160%;
-	padding-bottom: 20px;
-	width: auto;
-}
-
-.example3 .navbar-brand {
-	height: 80px;
-}
-
-.example3 .nav>li>a {
-	padding-top: 30px;
-	padding-bottom: 30px;
-}
-
-.example3 .navbar-toggle {
-	padding: 10px;
-	margin: 25px 15px 25px 0;
-}
-
-span {
-	color: "#3399FF";
-	font-size: 20px;
-	font-style: italic;
-}
-</style>
 </head>
 <body ng-app="myApp">
-	<div class="example3">
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar3">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				
-				<!-- <ul class="nav navbar-nav navbar-left">
-       <li> <a class= "navbar-brand"><span style="color:#4C9900">FrenzzCollab</span></a></li></ul> -->
-			</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#!Home">Home</a></li>
-				<li><a href="#!Login">Login</a></li>
-				<li><a href="#!Register">Register</a></li>
+	<<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">ChatZies</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      <li class="active"><a href="#!Home">Home</a></li>						
+				<li><a href="#!Blog">Blog</a>
+				<li><a href="#!UpdateBlog">UpdateBlog</a>
 				<li><a href="#!AboutUs">About Us</a></li>
 				<li><a href="#!ContactUs">Contact Us</a></li>
-			</ul>
-		</div>
-		</nav>
-	</div>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#!Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+        <li><a href="#!Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 	This is index
 	<div ng-view> </div>
 	

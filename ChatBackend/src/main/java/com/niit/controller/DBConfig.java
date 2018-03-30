@@ -18,8 +18,17 @@ import com.niit.dao.BlogDAO;
 import com.niit.dao.BlogDAOImpl;
 import com.niit.dao.ForumDAO;
 import com.niit.dao.ForumDAOImpl;
+import com.niit.dao.JobDAO;
+import com.niit.dao.JobDAOImpl;
+import com.niit.dao.UserDAO;
+import com.niit.dao.UserDAOImpl;
+import com.niit.model.ApplyJob;
 import com.niit.model.Blog;
+import com.niit.model.BlogComment;
 import com.niit.model.Forum;
+import com.niit.model.ForumComment;
+import com.niit.model.Job;
+import com.niit.model.User;
 @Configuration
 @ComponentScan("com.niit")
 @EnableTransactionManagement
@@ -47,7 +56,19 @@ public class DBConfig {
 		hibernateProp.put("hibernate.show_sql","true");
 		LocalSessionFactoryBuilder sessionFactoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
 		sessionFactoryBuilder.addAnnotatedClass(Blog.class);
-		//sessionFactoryBuilder.addAnnotatedClass(Forum.class);
+	
+		sessionFactoryBuilder.addAnnotatedClass(Forum.class);
+	
+		sessionFactoryBuilder.addAnnotatedClass(Job.class);
+		System.out.println("<--------------Job Class Added-------------->");
+		sessionFactoryBuilder.addAnnotatedClass(User.class);
+		System.out.println("<--------------User Class Added-------------->");
+		sessionFactoryBuilder.addAnnotatedClass(ApplyJob.class);
+		System.out.println("<--------------ApplyJob Class Added-------------->");
+		sessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
+		System.out.println("<--------------BlogComment Class Added-------------->");
+		sessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
+		System.out.println("<--------------ForumComment Class Added-------------->");
 		sessionFactoryBuilder.addProperties(hibernateProp);
 		System.out.println("Table created???");
 		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
@@ -63,11 +84,25 @@ public class DBConfig {
 	{
 		return new BlogDAOImpl();
 	}
-	/*@Bean(name="forumDAO")
+	@Bean(name="forumDAO")
 	public ForumDAO getForumDAO()
 	{
 		return new ForumDAOImpl();
-	}*/
+	}
+	@Bean(name="jobDAO")
+	public JobDAO getJobDAOImpl()
+	{
+		System.out.println("JobDAO found");
+		return new JobDAOImpl();
+	}
+	
+	@Bean(name="userDAO")
+	public UserDAO getUserDAOImpl()
+	{
+		System.out.println("UserDAO found");
+		return new UserDAOImpl();
+	}
+
 	
 	@Bean
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
