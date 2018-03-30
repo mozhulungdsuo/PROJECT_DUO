@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
 
              User user=session.get(User.class,id);
              session.close();
-             System.out.println("yy");
+             
              return user;		
 		} catch (Exception e)
 		{

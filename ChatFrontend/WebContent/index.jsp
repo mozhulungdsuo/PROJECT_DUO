@@ -67,8 +67,8 @@ span {
 				<li class="active"><a href="#!Home">Home</a></li>
 				<li><a href="#!Login">Login</a></li>
 				<li><a href="#!Register">Register</a></li>
-				<li><a href="#!About Us">About Us</a></li>
-				<li><a href="#!Contact Us">Contact Us</a></li>
+				<li><a href="#!AboutUs">About Us</a></li>
+				<li><a href="#!ContactUs">Contact Us</a></li>
 			</ul>
 		</div>
 		</nav>

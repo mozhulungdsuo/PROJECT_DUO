@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.dao.BlogDAO;
 import com.niit.model.Blog;
+import com.niit.model.BlogComment;
 
 @RestController
 public class BlogController {
@@ -130,4 +131,80 @@ public class BlogController {
 				blogDAO.rejectBlog(blogs);
 		        return new ResponseEntity<Blog>(blogs, HttpStatus.OK);
 		    }
+		 @GetMapping(value="/incrementLikes/{blogId}")
+	     public ResponseEntity<String>IncrementsLikes(@PathVariable("blogId")int blogId)
+	     {
+			 Blog blog=blogDAO.getBlog(blogId);
+			 if(blogDAO.incrementLikes(blog))
+			 {
+				 return new ResponseEntity<String>("Success",HttpStatus.OK);
+			 }
+			 else
+			 {
+				 return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
+			 }
+	     }
+		 @PostMapping(value="/addBlogComment"  )
+		  	public ResponseEntity<String>addblogcomment(@RequestBody BlogComment blogComment)
+		  	{
+		  		System.out.println("in add comment control");
+		  		
+		  		blogComment.setCommentDate(new java.util.Date());       
+		  		blogComment.setBlogId(555);// need to check?
+		  	
+		   		
+		  				
+		  				
+		  		if(blogDAO.addBlogComment(blogComment))
+		  		{
+		  			return new ResponseEntity<String>("Success",HttpStatus.OK);
+		  		}
+		  		else
+		  		{
+		  			return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
+		  		}
+		  		
+		  		
+		  	}
+		 @RequestMapping(value ="/deleteBlogComment/{commentId}",method=RequestMethod.DELETE)
+	 	 public ResponseEntity<String> deleteBlogcomment(@PathVariable("commentId") int commentId) 
+	 	 {
+	 	       
+	 		   BlogComment comments = blogDAO.getBlogComment(commentId);
+
+	 	        if (comments == null){
+	 	            
+	 	            return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
+	 	        }
+
+	 
+	 	                    
+	 	                       blogDAO.deleteBlogComment(comments);
+	 	        
+	 	        return new ResponseEntity<String>("Success", HttpStatus.OK);
+	 	    }
+	      
+		 
+		 @RequestMapping(value = "/getByCommentId/{commentId}", method = RequestMethod.GET)
+	      public ResponseEntity<BlogComment> getComment(@PathVariable("commentId") int commentId){
+	          
+	          BlogComment comments = blogDAO.getBlogComment(commentId);
+
+	          if (comments == null){
+	             
+	              return new ResponseEntity<BlogComment>(HttpStatus.NOT_FOUND);
+	          }
+
+	          return new ResponseEntity<BlogComment>(comments, HttpStatus.OK);
+	      }
+		 @GetMapping(value="/listBlogComments")
+		  	public ResponseEntity<List<BlogComment>> getListBlogComment()
+		  	{
+		  		
+		  		List<BlogComment> listBlogComments=blogDAO.listBlogComment(555);
+		  		return new ResponseEntity<List<BlogComment>>(listBlogComments,HttpStatus.OK);
+		  		
+		  	}
+		      
+		 
 }
