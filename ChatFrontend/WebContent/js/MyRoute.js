@@ -29,8 +29,9 @@ myApp.config(function($routeProvider) {
     .when("/Logout",{
     	templateUrl:"c_user/Logout.html"
     })
-    .when("/displayBlog",{
-		templateUrl : "c_blog/DisplayBlog_page.html"
+    
+	 .when("/listBlogs",{
+		templateUrl : "c_blog/listBlogs.html"
 	})
 });
 

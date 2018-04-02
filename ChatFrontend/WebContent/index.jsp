@@ -35,6 +35,7 @@
       <ul class="nav navbar-nav">
       <li class="active"><a href="#!Home">Home</a></li>						
 				<li><a href="#!Blog">Blog</a>
+				<li><a href="#!listBlogs"> List Blogs</a>
 				<li><a href="#!UpdateBlog">UpdateBlog</a>
 				<li><a href="#!AboutUs">About Us</a></li>
 				<li><a href="#!ContactUs">Contact Us</a></li>
@@ -46,7 +47,7 @@
     </div>
   </div>
 </nav>
-	This is index
+
 	<div ng-view> </div>
 	
 

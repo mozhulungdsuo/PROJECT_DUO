@@ -1,0 +1,33 @@
+
+<div ng-controller="BlogController">
+<table>
+ <thead>
+ <tr>
+  <th>Blog Id</th>
+  <th>UserName</th>
+  <th>Blog Name</th> 
+  <th> BLog Content</th>                    
+  <th>Likes</th>
+  <th>Status</th>
+   <th>Action</th>
+   </tr>
+ </thead>
+<tbody>
+
+             <tr ng-repeat="blog in blogData">
+                       <td>{{blog.blogId}}</td>
+                        <td>{{blog.username}}</td>
+                        <td>{{blog.blogName}}</td>
+                        <td>{{blog.blogContent}}</td>                     
+                        <td>{{blog.likes}}</td>
+                        <td>{{blog.status}}</td>
+                       <td colspan="3px">
+                            <a href="" class="btn btn-info btn btn" ng-click="incrementLike(blog.blogId)"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                           <a href="" class="btn btn-danger" ng-click="deleteBlog(blog.blogId)"><span class="glyphicon glyphicon-trash"></span></a>
+                           <a href="" class="btn btn-success" ng-click=""><span class="glyphicon glyphicon-pencil"></span></a>
+                      </td>
+                   </tr>
+                </tbody>
+</table>
+
+</div>

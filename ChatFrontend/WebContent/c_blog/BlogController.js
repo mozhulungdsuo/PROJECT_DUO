@@ -1,4 +1,4 @@
-myApp.controller("BlogController", function($scope, $http, $location) {
+myApp.controller("BlogController", function($scope, $http, $location,$route) {
 	console.log("In BlogController");
 
 	$scope.blog = {
@@ -28,10 +28,25 @@ myApp.controller("BlogController", function($scope, $http, $location) {
 		$http.delete('http://localhost:8081/ChatMidWare/deleteBlog/'+blogId)
 		.then(fetchAllBlogs(), function(response){
 			console.log('Blog deleted '+ blogId);
-			console.log('Response Status ' + response.statusText);
-			$route.reload();
+		    console.log('Response Status ' + response.statusText);
+		    //$route.reload();
+			$location.path('/listBlogs');
+			
 		});
 	};
+	
+	$scope.incrementLike=function(blogId)
+	{
+            	console.log('Enter into the incrementLike blog method');
+		        $http.get('http://localhost:8081/ChatMidWare/incrementLikes/'+blogId)
+		.then( fetchAllBlog(),function(response)
+		{
+			  console.log('Incerement');
+			  $location.path("/listBlogs");
+			         
+			        
+				});
+	}
 	
 	
 	$scope.editBlog = function(blogId){
@@ -41,7 +56,7 @@ myApp.controller("BlogController", function($scope, $http, $location) {
 			console.log('In edit blog');
 			$scope.blog = response.data;
 
-			$location.path('/UpdateBlog');
+			$location.path('/Blog');
 		});
 	};
 	
@@ -54,6 +69,7 @@ myApp.controller("BlogController", function($scope, $http, $location) {
 					$scope.blogData = response.data;
 				});
 	};
+	
 	
 	fetchAllBlogs();
 });
