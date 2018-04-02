@@ -85,7 +85,7 @@ public class BlogController {
 		        
 		        return new ResponseEntity<Blog>(blogs, HttpStatus.OK);
 		    }
-		 @RequestMapping(value ="/delete/{blogId}",method=RequestMethod.DELETE)
+		 @RequestMapping(value ="/deleteBlog/{blogId}",method=RequestMethod.DELETE)
 		 public ResponseEntity<String> deleteBlog(@PathVariable("blogId") int blogId) 
 		 {
 		       
