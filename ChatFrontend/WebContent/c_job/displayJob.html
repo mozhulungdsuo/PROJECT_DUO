@@ -1,0 +1,58 @@
+
+
+<div ng-controller="JobController">
+  
+<div class="modal-dialog  modal-lg" style="width: 100%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="text-center">Job Details</h1>
+			</div>
+			<div class="modal-body">
+
+<div class="table-responsive">
+<table class="table table-hover">
+ <thead>
+ <tr>
+ 
+  <th>Company</th>
+  <th>Job Description</th> 
+  <th>Job Title</th>                  
+  <th>Last Date Apply</th>
+  <th>Salary</th>
+  <th>Action</th>
+  </tr>
+ </thead>
+<tbody>
+       <tr ng-repeat="job in jobdata">
+                        
+                        <td>{{job.Company}}</td>
+                        <td>{{job.jobDescription}}</td>
+                        <td>{{job.jobTitle}}</td>               
+                        <td>{{job.finalDate}}</td>
+                        <td>{{job.salary}}</td>
+                       <td>                            
+                            <button type="button" ng-click="deleteJob(job.jobId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+                         </button>
+                         </td>
+                           
+                          
+         </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

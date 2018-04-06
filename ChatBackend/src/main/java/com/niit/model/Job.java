@@ -20,10 +20,17 @@ public class Job {
 	int jobId;
 	String jobTitle;
 	String jobDescripton;
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	double salary;
 	String Company;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     Date finalDate;
+	String location;
 	public int getJobId() {
 		return jobId;
 	}

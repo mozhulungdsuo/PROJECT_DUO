@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.model.Job;
-import com.niit.model.User;
+import com.niit.model.UserDetails;
 @Repository("userDAO")
 public class UserDAOImpl implements UserDAO {
 	@Autowired
 	SessionFactory sessionFactory;
-	public boolean addUser(User user) {
+	public boolean addUser(UserDetails user) {
 		try
 		{
 			
@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public boolean deleteUser(User user) {
+	public boolean deleteUser(UserDetails user) {
 		try
 		{
 			sessionFactory.getCurrentSession().delete(user);			
@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public boolean updateUser(User user) {
+	public boolean updateUser(UserDetails user) {
 		try
 		{
 			sessionFactory.getCurrentSession().update(user);			
@@ -49,11 +49,11 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public User getUser(int id) {
+	public UserDetails getUser(int id) {
 		try{
 			Session session=sessionFactory.openSession();
 
-             User user=session.get(User.class,id);
+             UserDetails user=session.get(UserDetails.class,id);
              session.close();
              
              return user;		
@@ -63,22 +63,22 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public List<User> listUser(String email) {
+	public List<UserDetails> listUser(String email) {
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from User where email=:email");
+		Query query=session.createQuery("from UserDetails where email=:email");
 		query.setParameter("email",email);
-		List<User> listUsers=query.list();
+		List<UserDetails> listUsers=query.list();
 		return listUsers;
 	}
 
-	public boolean checkLogin(User user) {
+	public boolean checkLogin(UserDetails user) {
 		try
 		{
 			Session session=sessionFactory.openSession();
-			Query query=session.createQuery("from User where userName=:userName and password=:pass");
+			Query query=session.createQuery("from UserDetails where userName=:userName and password=:pass");
 			query.setParameter("userName",user.getUserName());
 			query.setParameter("pass", user.getPassword());
-			User users=(User)query.list().get(0);
+			UserDetails users=(UserDetails)query.list().get(0);
 			if(users==null)
 				return false;
 			else
@@ -91,7 +91,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public boolean updateOnlineStatus(String status, User user) {
+	public boolean updateOnlineStatus(String status, UserDetails user) {
 		try
 		{
 			user.setStatus(status);
@@ -106,11 +106,11 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public User getUser(String userName) {
+	public UserDetails getUser(String userName) {
 		try
 		{
 			Session session=sessionFactory.openSession();
-			User user=session.get(User.class,userName);
+			UserDetails user=session.get(UserDetails.class,userName);
 			session.close();
 			return user;
 		}

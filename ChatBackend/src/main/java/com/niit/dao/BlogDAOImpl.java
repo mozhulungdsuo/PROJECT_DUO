@@ -89,6 +89,7 @@ public class BlogDAOImpl implements BlogDAO{
 		List<Blog> pl=query.getResultList();
 		return pl;
 	}
+	@Transactional
 	public boolean incrementLikes(Blog blog) {
 		try
 		{
@@ -103,6 +104,7 @@ public class BlogDAOImpl implements BlogDAO{
 			return false;
 		}
 	}
+	@Transactional
 	public boolean addBlogComment(BlogComment blogComment) {
 		try
 		{
@@ -114,6 +116,7 @@ public class BlogDAOImpl implements BlogDAO{
 			return false;
 		}
 	}
+	@Transactional
 	public boolean deleteBlogComment(BlogComment blogComment) {
 		try
 		{
@@ -125,6 +128,7 @@ public class BlogDAOImpl implements BlogDAO{
 			return false;
 		}
 	}
+	@Transactional
 	public BlogComment getBlogComment(int commentId) {
 		try
 		{
@@ -138,6 +142,7 @@ public class BlogDAOImpl implements BlogDAO{
 			return null;
 		}
 	}
+	@Transactional
 	public List<BlogComment> listBlogComment(int blogId) {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from BlogComment where blogId=:blogId");
@@ -145,10 +150,12 @@ public class BlogDAOImpl implements BlogDAO{
 		List<BlogComment> listBlogComment=((org.hibernate.query.Query) query).list();
 		return listBlogComment;
 	}
+	@Transactional
 	public boolean deleteBlog(Blog blog) {
 		try
 		{
-			sessionFactory.getCurrentSession().delete(blog);			
+			sessionFactory.getCurrentSession().delete(blog);	
+			System.out.println("It is really deleted??");
 		return true;
 		}catch(Exception e)
 		{

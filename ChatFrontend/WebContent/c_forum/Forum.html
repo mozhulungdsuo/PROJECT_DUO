@@ -1,0 +1,30 @@
+	<div ng-controller="ForumController">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="text-center">Add Forum</h1>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<form class="col-md-12 center-block" id="blogForm" method="POST">
+						<div class="form-group">
+							<input type="text" class="form-control input-lg" name="forumName"
+								placeholder="Forum name" ng-model="forum.forumName" />
+						</div>
+						<div class="form-group">
+							<textarea class="form-control input-lg" rows="3"
+								name="forumContent" placeholder="Forum content"
+								ng-model="forum.forumContent"></textarea>
+						</div>
+						<div class=form-group>
+							<input type="submit" class="btn btn-lg btn-success"
+								value="Create Forum" ng-click="insertForum()"/> <input
+								type="reset" class="btn btn-lg btn-default" value="Reset"/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>		
+	</div>
+
+</div>

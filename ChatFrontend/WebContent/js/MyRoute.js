@@ -23,8 +23,8 @@ myApp.config(function($routeProvider) {
 	.when("/Blog",{
 		templateUrl:"c_blog/Blog.html"
 	})
-   .when("/UpdateBlog",{
-	   templateUrl:"c_blog/UpdateBlog.html"
+   .when("/changeBlog",{
+	   templateUrl:"c_blog/changeBlog.html"
     })
     .when("/Logout",{
     	templateUrl:"c_user/Logout.html"
@@ -32,6 +32,19 @@ myApp.config(function($routeProvider) {
     
 	 .when("/listBlogs",{
 		templateUrl : "c_blog/listBlogs.html"
+	})
+	.when("/Forum",{
+		templateUrl : "c_forum/Forum.html"
+	})
+	.when("/displayForum",{
+		templateUrl : "c_forum/displayForum.html"
+			
+	})
+	.when("/Job",{
+		templateUrl : "c_job/Job.html"
+	})
+	.when("/displayJob",{
+		templateUrl : "c_job/displayJob.html"
 	})
 });
 

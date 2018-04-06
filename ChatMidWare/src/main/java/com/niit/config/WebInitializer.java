@@ -1,8 +1,8 @@
 package com.niit.config;
-import javax.servlet.Filter;
+
 import javax.servlet.ServletRegistration;
 
-import org.springframework.web.filter.CharacterEncodingFilter;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import com.niit.controller.DBConfig;
 
@@ -34,6 +34,19 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	{
 		return  new String[] { "/" };
 	}
+	
+	
+	//add this during chat
+	/*	  
+	@Override
+	protected Filter[] getServletFilters(){
+	CharacterEncodingFilter encodingFilter=new CharacterEncodingFilter();
+	encodingFilter.setEncoding(StandardCharacterSet.UTF_8.name());
+	return new Filter[] {encodingFilter};
+	
+	}	
+	  
+     */
 
 }
 

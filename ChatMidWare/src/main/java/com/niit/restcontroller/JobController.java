@@ -42,9 +42,9 @@ public class JobController {
 	public ResponseEntity<String>addjob(@RequestBody Job job)
 	{
 		
-		job.setCompany("Unisoft.Pvt.Ltd");
+		
 		job.setFinalDate(new java.util.Date());
-		job.setSalary(35000);
+	
 		
 		if(jobDAO.addJob(job))
 		{

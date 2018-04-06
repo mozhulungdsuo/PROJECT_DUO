@@ -92,7 +92,7 @@ public class BlogController {
 			   Blog blogs = blogDAO.getBlog(blogId);
 
 		        if (blogs == null){
-		            
+		            System.out.println("Sadly not deleted");
 		            return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
 		        }
 

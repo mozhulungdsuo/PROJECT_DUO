@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.dao.ForumDAO;
+import com.niit.model.Blog;
 import com.niit.model.Forum;
 
 @RestController
@@ -35,9 +36,15 @@ public class ForumController {
 	public ResponseEntity<List<Forum>> getListForums()
 	{
 		
-		List<Forum> listForums=forumDAO.listForum("topic");
+		List<Forum> listForums=forumDAO.listForum("aben");
+		if(listForums.size()>0)
+		{
 		return new ResponseEntity<List<Forum>>(listForums,HttpStatus.OK);
-		
+		}
+		else
+		{
+			return new ResponseEntity<List<Forum>>(listForums,HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	

@@ -18,6 +18,8 @@
 <script src="js/MyRoute.js"></script>
 <script src="c_blog/BlogController.js"></script>
 <script src="c_user/UserController.js"></script>
+<script src="c_forum/ForumController.js"></script>
+<script src="c_job/JobController.js"></script>
 
 </head>
 <body ng-app="myApp">
@@ -34,9 +36,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       <li class="active"><a href="#!Home">Home</a></li>						
-				<li><a href="#!Blog">Blog</a>
-				<li><a href="#!listBlogs"> List Blogs</a>
-				<li><a href="#!UpdateBlog">UpdateBlog</a>
+				<li><a href="#!Blog">Blog</a></li>
+				<li><a href="#!listBlogs"> List Blogs</a></li>
+				<li><a href="#!Forum">Forum</a>	</li>
+				<li><a href="#!displayForum">List Forums</a></li>
+				<li><a href="#!Job">Job</a></li>
+				<li><a href="#!displayJob">Job Lists</a></li>			
 				<li><a href="#!AboutUs">About Us</a></li>
 				<li><a href="#!ContactUs">Contact Us</a></li>
       </ul>

@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.dao.UserDAO;
-import com.niit.model.User;
+import com.niit.model.UserDetails;
 
 @RestController
 public class UserController {
 	@Autowired
 	UserDAO userDAO;
 	@PostMapping(value="/addUser"  )
-	public ResponseEntity<String>addUser(@RequestBody User user)
+	public ResponseEntity<String>addUser(@RequestBody UserDetails user)
 	{
 		
 		
@@ -37,40 +37,40 @@ public class UserController {
 		
 	}
 	@RequestMapping(value = "/getUserById/{userName}", method = RequestMethod.GET)
-    public ResponseEntity<User> get(@PathVariable("userName") String userName){
+    public ResponseEntity<UserDetails> get(@PathVariable("userName") String userName){
         
-        User user = userDAO.getUser(userName);
+        UserDetails user = userDAO.getUser(userName);
 
         if (user == null){
            
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<UserDetails>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        return new ResponseEntity<UserDetails>(user, HttpStatus.OK);
     }
 	
 	 @RequestMapping(value = "/UpdateUser/{userName}", method = RequestMethod.PUT)
-	    public ResponseEntity<User> update(@PathVariable("userName") String userName){
+	    public ResponseEntity<UserDetails> update(@PathVariable("userName") String userName){
 	       
-		   User users = userDAO.getUser(userName);
+		   UserDetails users = userDAO.getUser(userName);
 
 	        if (users == null){
 	            
-	            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	            return new ResponseEntity<UserDetails>(HttpStatus.NOT_FOUND);
 	        }
 
 	                     users.setContactNo(users.getContactNo()); //update more?
 	                    
 	                       userDAO.updateUser(users);
 	        
-	        return new ResponseEntity<User>(users, HttpStatus.OK);
+	        return new ResponseEntity<UserDetails>(users, HttpStatus.OK);
 	    }
 
 	 @RequestMapping(value ="/deleteUser/{userName}",method=RequestMethod.DELETE)
 	 public ResponseEntity<String> deleteuser(@PathVariable("userName")String userName) 
 	 {
 	       
-		   User users = userDAO.getUser("Ben");
+		   UserDetails users = userDAO.getUser("Ben");
 
 	        if (users == null){
 	            
@@ -85,27 +85,29 @@ public class UserController {
 	    }
 	 
 	 @PostMapping(value="/login")
-	 public ResponseEntity<User>checklogin(@RequestBody User user)
+	 public ResponseEntity<UserDetails>checklogin(@RequestBody UserDetails user)
 	 {
 		 if(userDAO.checkLogin(user))
 		 {
-			 User user1=(User)userDAO.getUser(user.getUserName());
+			 UserDetails user1=(UserDetails)userDAO.getUser(user.getUserName());
 			 userDAO.updateOnlineStatus("Y", user1);
-			 return new ResponseEntity<User>(user1,HttpStatus.OK);
+			 //for fileupload
+			 //session.
+			 return new ResponseEntity<UserDetails>(user1,HttpStatus.OK);
 			 
 		 }
 		 
 		 else
 		 {
-			 return new ResponseEntity<User>(user,HttpStatus.INTERNAL_SERVER_ERROR);
+			 return new ResponseEntity<UserDetails>(user,HttpStatus.INTERNAL_SERVER_ERROR);
 		 }
 	 }
 	 @GetMapping(value="/listUsers")
-		public ResponseEntity<List<User>> getListUsers()
+		public ResponseEntity<List<UserDetails>> getListUsers()
 		{
 			
-			List<User> listUsers=userDAO.listUser("aa@yahoo.com");
-			return new ResponseEntity<List<User>>(listUsers,HttpStatus.OK);
+			List<UserDetails> listUsers=userDAO.listUser("aa@yahoo.com");
+			return new ResponseEntity<List<UserDetails>>(listUsers,HttpStatus.OK);
 
 		}
 		

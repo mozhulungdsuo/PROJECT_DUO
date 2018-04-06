@@ -2,17 +2,17 @@ package com.niit.dao;
 
 import java.util.List;
 
-import com.niit.model.User;
+import com.niit.model.UserDetails;
 
 public interface UserDAO {
-public boolean addUser(User user);
-public boolean deleteUser(User user);
-public boolean updateUser(User user);
+public boolean addUser(UserDetails user);
+public boolean deleteUser(UserDetails user);
+public boolean updateUser(UserDetails user);
 //public User getUser(int id);
-public User getUser(String userName);
-public List<User> listUser(String email);
-public boolean checkLogin(User user);
-public boolean updateOnlineStatus(String status, User user);
+public UserDetails getUser(String userName);
+public List<UserDetails> listUser(String email);
+public boolean checkLogin(UserDetails user);
+public boolean updateOnlineStatus(String status, UserDetails user);
 
 
 }

@@ -28,7 +28,7 @@ import com.niit.model.BlogComment;
 import com.niit.model.Forum;
 import com.niit.model.ForumComment;
 import com.niit.model.Job;
-import com.niit.model.User;
+import com.niit.model.UserDetails;
 @Configuration
 @ComponentScan("com.niit")
 @EnableTransactionManagement
@@ -61,7 +61,7 @@ public class DBConfig {
 	
 		sessionFactoryBuilder.addAnnotatedClass(Job.class);
 		System.out.println("<--------------Job Class Added-------------->");
-		sessionFactoryBuilder.addAnnotatedClass(User.class);
+		sessionFactoryBuilder.addAnnotatedClass(UserDetails.class);
 		System.out.println("<--------------User Class Added-------------->");
 		sessionFactoryBuilder.addAnnotatedClass(ApplyJob.class);
 		System.out.println("<--------------ApplyJob Class Added-------------->");
@@ -86,7 +86,7 @@ public class DBConfig {
 	}
 	@Bean(name="forumDAO")
 	public ForumDAO getForumDAO()
-	{
+	{   System.out.println("forumDAO found");
 		return new ForumDAOImpl();
 	}
 	@Bean(name="jobDAO")
