@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.ApplyJob;
 import com.niit.model.Job;
@@ -14,6 +15,7 @@ import com.niit.model.Job;
 public class JobDAOImpl implements JobDAO {
 	@Autowired
 	SessionFactory sessionFactory;
+	@Transactional
 	public boolean addJob(Job job) {
 		try
 		{
@@ -26,7 +28,7 @@ public class JobDAOImpl implements JobDAO {
 		  return false;
 		}
 	}
-
+	@Transactional
 	public boolean deleteJob(Job job) {
 		try
 		{
@@ -37,6 +39,7 @@ public class JobDAOImpl implements JobDAO {
 		      return false;
 		}
 	}
+	@Transactional
 public boolean updateJob(Job job) {
 		try
 		{
@@ -47,7 +50,7 @@ public boolean updateJob(Job job) {
 		      return false;
 		}
 	}
-
+@Transactional
 	public Job getJob(int jobId) {
 		try{
 			Session session=sessionFactory.openSession();
@@ -61,7 +64,7 @@ public boolean updateJob(Job job) {
 			return null;
 		}
 	}
-
+	@Transactional
 	public List<Job> listJob(int jobId) {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Job where jobId=:jobId");
@@ -70,7 +73,7 @@ public boolean updateJob(Job job) {
 		List<Job> listJobs=query.list();
 		return listJobs;
 	}
-
+	@Transactional
 	public boolean applyJob(ApplyJob job) {
 		try
 		{
@@ -82,13 +85,22 @@ public boolean updateJob(Job job) {
 			return false;
 		}
 	}
-
+	@Transactional
 	public List<ApplyJob> getAllApplicationJobDetails() {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery(" from  ApplyJob");
 		query.list();
 		List<ApplyJob> applyjoblist=query.list();
 		return applyjoblist;
+	}
+
+	@Transactional
+	public List<Job> listallJob() {
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery("from Job");	
+	
+		List<Job> listJobs=query.list();
+		return listJobs;
 	}
 
 }

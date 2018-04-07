@@ -20,6 +20,7 @@ public class Job {
 	int jobId;
 	String jobTitle;
 	String jobDescripton;
+	String location;
 	public String getLocation() {
 		return location;
 	}
@@ -30,7 +31,7 @@ public class Job {
 	String Company;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     Date finalDate;
-	String location;
+	
 	public int getJobId() {
 		return jobId;
 	}

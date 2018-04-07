@@ -11,6 +11,7 @@ public boolean deleteJob(Job job);
 public boolean updateJob(Job job);
 public Job getJob(int jobId);
 public List<Job> listJob(int jobId);
+public List<Job> listallJob();
 
 public boolean applyJob(ApplyJob job);
 public List<ApplyJob> getAllApplicationJobDetails();
