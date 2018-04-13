@@ -19,7 +19,8 @@ public class Job {
 	@SequenceGenerator(name="job_sequence", sequenceName="job_seq", initialValue=1, allocationSize=1)
 	int jobId;
 	String jobTitle;
-	String jobDescripton;
+	String jobDescription;
+	
 	String location;
 	public String getLocation() {
 		return location;
@@ -28,7 +29,7 @@ public class Job {
 		this.location = location;
 	}
 	double salary;
-	String Company;
+	String company;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     Date finalDate;
 	
@@ -44,12 +45,8 @@ public class Job {
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
 	}
-	public String getJobDescripton() {
-		return jobDescripton;
-	}
-	public void setJobDescripton(String jobDescripton) {
-		this.jobDescripton = jobDescripton;
-	}
+	
+	
 	public double getSalary() {
 		return salary;
 	}
@@ -57,10 +54,10 @@ public class Job {
 		this.salary = salary;
 	}
 	public String getCompany() {
-		return Company;
+		return company;
 	}
 	public void setCompany(String company) {
-		Company = company;
+		this.company = company;
 	}
 	public Date getFinalDate() {
 		return finalDate;
@@ -68,7 +65,12 @@ public class Job {
 	public void setFinalDate(Date finalDate) {
 		this.finalDate = finalDate;
 	}
-
+	public String getJobDescription() {
+		return jobDescription;
+	}
+	public void setJobDescription(String jobDescription) {
+		this.jobDescription = jobDescription;
+	}
 	
 	
 }

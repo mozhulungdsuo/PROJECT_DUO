@@ -2,6 +2,8 @@ package com.niit.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import com.niit.model.UserDetails;
 
 @RestController
 public class UserController {
+
 	@Autowired
 	UserDAO userDAO;
 	@PostMapping(value="/addUser"  )
@@ -85,14 +88,13 @@ public class UserController {
 	    }
 	 
 	 @PostMapping(value="/login")
-	 public ResponseEntity<UserDetails>checklogin(@RequestBody UserDetails user)
+	 public ResponseEntity<UserDetails>checklogin(@RequestBody UserDetails user,HttpSession session)
 	 {
 		 if(userDAO.checkLogin(user))
 		 {
 			 UserDetails user1=(UserDetails)userDAO.getUser(user.getUserName());
 			 userDAO.updateOnlineStatus("Y", user1);
-			 //for fileupload
-			 //session.
+			 session.setAttribute("username",user.getUserName());
 			 return new ResponseEntity<UserDetails>(user1,HttpStatus.OK);
 			 
 		 }
@@ -106,7 +108,7 @@ public class UserController {
 		public ResponseEntity<List<UserDetails>> getListUsers()
 		{
 			
-			List<UserDetails> listUsers=userDAO.listUser("aa@yahoo.com");
+			List<UserDetails> listUsers=userDAO.listUser("aben@gmail.com");
 			return new ResponseEntity<List<UserDetails>>(listUsers,HttpStatus.OK);
 
 		}

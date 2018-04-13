@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Job;
 import com.niit.model.UserDetails;
@@ -14,6 +15,7 @@ import com.niit.model.UserDetails;
 public class UserDAOImpl implements UserDAO {
 	@Autowired
 	SessionFactory sessionFactory;
+	@Transactional
 	public boolean addUser(UserDetails user) {
 		try
 		{
@@ -26,7 +28,7 @@ public class UserDAOImpl implements UserDAO {
 		  return false;
 		}
 	}
-
+	@Transactional
 	public boolean deleteUser(UserDetails user) {
 		try
 		{
@@ -37,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
 		      return false;
 		}
 	}
-
+	@Transactional
 	public boolean updateUser(UserDetails user) {
 		try
 		{
@@ -49,20 +51,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public UserDetails getUser(int id) {
-		try{
-			Session session=sessionFactory.openSession();
-
-             UserDetails user=session.get(UserDetails.class,id);
-             session.close();
-             
-             return user;		
-		} catch (Exception e)
-		{
-			return null;
-		}
-	}
-
+	@Transactional
 	public List<UserDetails> listUser(String email) {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from UserDetails where email=:email");
@@ -70,14 +59,14 @@ public class UserDAOImpl implements UserDAO {
 		List<UserDetails> listUsers=query.list();
 		return listUsers;
 	}
-
+	@Transactional
 	public boolean checkLogin(UserDetails user) {
 		try
 		{
 			Session session=sessionFactory.openSession();
 			Query query=session.createQuery("from UserDetails where userName=:userName and password=:pass");
 			query.setParameter("userName",user.getUserName());
-			query.setParameter("pass", user.getPassword());
+			query.setParameter("pass",user.getPassword());
 			UserDetails users=(UserDetails)query.list().get(0);
 			if(users==null)
 				return false;
@@ -90,7 +79,7 @@ public class UserDAOImpl implements UserDAO {
 			return false;
 		}
 	}
-
+	@Transactional
 	public boolean updateOnlineStatus(String status, UserDetails user) {
 		try
 		{
@@ -105,13 +94,12 @@ public class UserDAOImpl implements UserDAO {
 			return false;
 		}
 	}
-
+	@Transactional
 	public UserDetails getUser(String userName) {
 		try
 		{
-			Session session=sessionFactory.openSession();
+			Session session=sessionFactory.getCurrentSession();
 			UserDetails user=session.get(UserDetails.class,userName);
-			session.close();
 			return user;
 		}
 		catch(Exception e)

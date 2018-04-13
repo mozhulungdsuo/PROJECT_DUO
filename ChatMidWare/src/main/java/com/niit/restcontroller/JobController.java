@@ -31,7 +31,7 @@ public class JobController {
 	public ResponseEntity<List<Job>> getListJobs()
 	{
 		
-		List<Job> listJobs=jobDAO.listJob(555) ;
+		List<Job> listJobs=jobDAO.listallJob();
 		return new ResponseEntity<List<Job>>(listJobs,HttpStatus.OK);
 
 	}
@@ -47,11 +47,12 @@ public class JobController {
 	
 		
 		if(jobDAO.addJob(job))
-		{
+		{    System.out.println("added job");
 			return new ResponseEntity<String>("Success",HttpStatus.OK);
 		}
 		else
 		{
+			System.out.println(" not added job");
 			return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
 		}
 		

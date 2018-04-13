@@ -1,5 +1,5 @@
 package com.niit.test;
-
+/*
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
@@ -80,4 +80,4 @@ public class ForumDAOTest {
 	}
 	*/
 
-}
+

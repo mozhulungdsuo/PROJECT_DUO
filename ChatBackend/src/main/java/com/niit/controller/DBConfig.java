@@ -20,6 +20,8 @@ import com.niit.dao.ForumDAO;
 import com.niit.dao.ForumDAOImpl;
 import com.niit.dao.JobDAO;
 import com.niit.dao.JobDAOImpl;
+import com.niit.dao.ProfileUpdateDAO;
+import com.niit.dao.ProfileUpdateDAOImpl;
 import com.niit.dao.UserDAO;
 import com.niit.dao.UserDAOImpl;
 import com.niit.model.ApplyJob;
@@ -28,6 +30,7 @@ import com.niit.model.BlogComment;
 import com.niit.model.Forum;
 import com.niit.model.ForumComment;
 import com.niit.model.Job;
+import com.niit.model.ProfilePicture;
 import com.niit.model.UserDetails;
 @Configuration
 @ComponentScan("com.niit")
@@ -69,6 +72,7 @@ public class DBConfig {
 		System.out.println("<--------------BlogComment Class Added-------------->");
 		sessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
 		System.out.println("<--------------ForumComment Class Added-------------->");
+		sessionFactoryBuilder.addAnnotatedClass(ProfilePicture.class);
 		sessionFactoryBuilder.addProperties(hibernateProp);
 		System.out.println("Table created???");
 		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
@@ -103,7 +107,12 @@ public class DBConfig {
 		return new UserDAOImpl();
 	}
 
-	
+	@Bean(name="profilePictureDAO")
+	public ProfileUpdateDAO getProfileDAOImpl()
+	{
+		System.out.println("profile DAO found");
+		return new ProfileUpdateDAOImpl();
+	}
 	@Bean
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
 	{
