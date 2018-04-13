@@ -16,9 +16,9 @@ import com.niit.controller.DBConfig;
 import com.niit.dao.BlogDAO;
 import com.niit.dao.BlogDAOImpl;
 import com.niit.model.Blog;
-@Transactional
+
 public class BlogDAOTest {
-	
+	/*
 	private static DBConfig config;
 	@Autowired
 	private static BlogDAO blogDAO;
@@ -79,5 +79,5 @@ public class BlogDAOTest {
 	
 	}
 	
-
+*/
 }
