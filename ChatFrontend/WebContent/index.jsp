@@ -15,45 +15,30 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script 
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
+	<script 
+     src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
+<script 
+     src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script 
+     src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
 <script src="js/MyRoute.js"></script>
 <script src="c_blog/BlogController.js"></script>
 <script src="c_user/UserController.js"></script>
 <script src="c_forum/ForumController.js"></script>
 <script src="c_job/JobController.js"></script>
+<script src="c_chat/ChatController.js"></script>
+<script src="c_chat/ChatService.js"></script>
 
 </head>
 <body ng-app="myApp">
-	<<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand" href="#">ChatZies</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-      <li class="active"><a href="#!Home">Home</a></li>						
-				<li><a href="#!Blog">Blog</a></li>
-				<li><a href="#!listBlogs"> List Blogs</a></li>
-				<li><a href="#!Forum">Forum</a>	</li>
-				<li><a href="#!displayForum">List Forums</a></li>
-				<li><a href="#!Job">Job</a></li>
-				<li><a href="#!displayJob">Job Lists</a></li>			
-				<li><a href="#!AboutUs">About Us</a></li>
-				<li><a href="#!ContactUs">Contact Us</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#!Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-        <li><a href="#!Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
-	<div ng-view> </div>
+	<%@include file="views/header.jsp" %>	
+
+	<div ng-view> 
+	
+	</div>
 	
 
 </body>

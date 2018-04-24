@@ -13,21 +13,21 @@ import com.niit.model.ProfilePicture;
 public class ProfileUpdateDAOImpl implements ProfileUpdateDAO {
 	 @Autowired
 	    SessionFactory sessionFactory;
-
+   @Transactional
 	public void save(ProfilePicture profilePicture) 
 	{
 		
-		Session session=sessionFactory.openSession();
+	   Session session=sessionFactory.getCurrentSession();
+		Object obj=session.get(ProfilePicture.class,profilePicture.getLoginName());
      session.save(profilePicture);
-     session.flush();
-     session.close();
-		
+    session.flush();
+    
 	}
-
-	public ProfilePicture getProfilePicture(String loginName) 
+@Transactional
+	public ProfilePicture getProfilePicture(String userName) 
 	{
 		Session session=sessionFactory.getCurrentSession();
-		ProfilePicture profilePicture=(ProfilePicture)session.get(ProfilePicture.class, loginName);
+		ProfilePicture profilePicture=(ProfilePicture)session.get(ProfilePicture.class, userName);
 		return profilePicture;
 		
 	}

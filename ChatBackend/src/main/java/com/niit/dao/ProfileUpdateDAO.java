@@ -4,5 +4,5 @@ import com.niit.model.ProfilePicture;
 
 public interface ProfileUpdateDAO {
 	public void save(ProfilePicture profilePicture);
-	public ProfilePicture getProfilePicture(String loginName);
+	public ProfilePicture getProfilePicture(String userName);
 }

@@ -14,7 +14,7 @@ import com.niit.model.Job;
 
 public class JobDAOTest {
 
-	
+	/*
 	
 	private static DBConfig config;
 	@Autowired
@@ -52,5 +52,5 @@ public class JobDAOTest {
 		  Job job = new Job();
 		 job=(Job)jobDAO.getJob(1);
 		 assertEquals("sucessfully deleted from table" ,true,jobDAO.deleteJob(job));
-	}
+	}*/
 }

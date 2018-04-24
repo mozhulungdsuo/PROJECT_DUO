@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.niit")
+@ComponentScan(basePackages={"com.niit"})
 public class WebResolver 
 {
 	@Bean
@@ -22,16 +22,17 @@ public class WebResolver
 		iRVResolver.setSuffix(".jsp");
 		return iRVResolver;
 	}
-	 public void addResourceHandlers(ResourceHandlerRegistry registry) 
+
+	public void addResourceHandlers(ResourceHandlerRegistry registry) 
 	    {
 	            registry.addResourceHandler("/resources/**")
 	            .addResourceLocations("/WEB-INF/resources/");
 	    }
 	     
 	   
-	 @Bean(name = "multipartResolver")  
+	     @Bean(name = "multipartResolver")  
 	     public CommonsMultipartResolver getMultipartResolver(){
-	           
+	           System.out.println("MultiPart");
 	            CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver(); 
 	            commonsMultipartResolver.setMaxUploadSize(100000000);
 	            return commonsMultipartResolver;

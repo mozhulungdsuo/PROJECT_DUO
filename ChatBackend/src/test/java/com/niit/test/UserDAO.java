@@ -10,6 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.niit.controller.DBConfig;
 
 public class UserDAO {
+	/*
 	private static DBConfig config;
 	@Autowired
 	private static UserDAO userDAO;
@@ -30,5 +31,5 @@ public class UserDAO {
 	public void test() {
 		fail("Not yet implemented");
 	}
-
+*/
 }

@@ -1,6 +1,6 @@
 myApp.controller("JobController",function($scope,$http,$location,$route)
 {
-	$scope.job={"Company":'',"jobDescription":'',"jobTitle":'',"finalDate":'',"location":'',"salary":''}
+	$scope.job={"company":'',"jobDescription":'',"jobTitle":'',"finalDate":'',"location":'',"salary":''}
 		
 	
 	$scope.jobdata;
@@ -8,6 +8,7 @@ myApp.controller("JobController",function($scope,$http,$location,$route)
 	$scope.insertJob=function()
 	{
 		console.log("Enter into insertjob Method");
+		console.log($scope.job);
 		$http.post('http://localhost:8081/ChatMidWare/addJob',$scope.job)
 		.then(fetchAllJob(),function(response)
      	{

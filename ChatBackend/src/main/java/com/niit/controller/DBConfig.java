@@ -13,6 +13,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.dao.BlogDAO;
 import com.niit.dao.BlogDAOImpl;
@@ -33,7 +34,7 @@ import com.niit.model.Job;
 import com.niit.model.ProfilePicture;
 import com.niit.model.UserDetails;
 @Configuration
-@ComponentScan("com.niit")
+//@ComponentScan("com.niit")
 @EnableTransactionManagement
 public class DBConfig {
 	  @Autowired
@@ -113,9 +114,10 @@ public class DBConfig {
 		System.out.println("profile DAO found");
 		return new ProfileUpdateDAOImpl();
 	}
-	@Bean
+	@Autowired
+	@Bean(name="transactionManager")	
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
-	{
+	{ System.out.println("transaction??");
 		return new HibernateTransactionManager(sessionFactory);
 		
 	}

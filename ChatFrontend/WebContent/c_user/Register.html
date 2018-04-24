@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div class="container-fluid" ng-controller="UserController">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="text-center">Register User</h1>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<form class="col-md-12 center-block" id="blogForm" method="POST">
+					 <div class="form-group">
+					<label for="userName">
+						User Name
+					</label>
+					<input type="text" class="form-control" id="userName"  ng-model="user.userName" />
+				</div>
+				<div class="form-group">
+				<label for="email">
+						Email
+					</label>
+					<input type="text" class="form-control" id="email"  ng-model="user.email" />
+				</div>
+				
+				<div class="form-group">
+					 
+					<label for="gender">
+						Gender
+					</label>
+					<input type="text" class="form-control" id="gender"  ng-model="user.gender" />
+				</div>
+				<div class="form-group">
+					 
+					<label for="dob">
+						Date of Birth
+					</label>
+					<input type="date" class="form-control" id="dob"  ng-model="user.dob" />
+				</div>
+				<div class="form-group">
+					 
+					<label for="Age">
+						Age
+					</label>
+					<input type="text" class="form-control" id="age"  ng-model="user.age" />
+				</div>
+				
+				
+				<div class="form-group">
+				<label for="contactNo">
+						Contact Number
+					</label>
+					<input type="text" class="form-control" id="contactNo"  ng-model="user.contactNo" />
+				</div>
+				
+				
+				
+				<div class="form-group">					 
+					<label for="password">
+						Password
+					</label>
+					<input type="password" class="form-control" id="password" ng-model="user.password"  />
+				</div>
+				<div class="form-group">
+				
+				<input type="submit" value="Register" class="btn btn-primary" ng-click="Register()">
+					</div>
+			</form>
+				</div>
+			</div>
+		</div>		
+	</div>
 
-</body>
-</html>
+</div>

@@ -1,5 +1,4 @@
-
-var myApp=angular.module("myApp",["ngRoute"]);
+var myApp=angular.module("myApp",['ngRoute',,'ngCookies']);
 
 myApp.config(function($routeProvider) {
 	$routeProvider.when("/", {
@@ -46,5 +45,32 @@ myApp.config(function($routeProvider) {
 	.when("/displayJob",{
 		templateUrl : "c_job/displayJob.html"
 	})
+	.when("/UserHome",{
+		templateUrl : "c_user/UserHome.html"
+	})
+	.when("/ProfileUpdate", {
+		templateUrl : "c_user/ProfileUpdate.html"
+	})
+	.when("/chat", {
+		templateUrl : "c_chat/chat.html"
+	})
 });
 
+
+myApp.run(function($rootScope,$cookieStore)
+		{
+			console.log('I am in run function');
+			console.log($rootScope.currentUser);
+			
+				if($rootScope.currentUser==undefined)
+				{
+				$rootScope.currentUser=$cookieStore.get('userDetails');
+				//$rootScope.currentBlog=$cookieStore.get('blogDetails');
+				//$rootScope.currentForum=$cookieStore.get('forumDetails');
+				}
+				else
+				{
+				console.log($rootScope.currentUser.userName);
+				console.log($rootScope.currentUser.role);
+				}
+		});

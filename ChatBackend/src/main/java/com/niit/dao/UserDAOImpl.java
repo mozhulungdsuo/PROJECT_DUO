@@ -19,7 +19,8 @@ public class UserDAOImpl implements UserDAO {
 	public boolean addUser(UserDetails user) {
 		try
 		{
-			
+			user.setRole("ROLE_USER");
+			user.setStatus("NA");
 			sessionFactory.getCurrentSession().save(user);
 			return true;			
 		
@@ -69,9 +70,15 @@ public class UserDAOImpl implements UserDAO {
 			query.setParameter("pass",user.getPassword());
 			UserDetails users=(UserDetails)query.list().get(0);
 			if(users==null)
+			{
+				System.out.println("Its is true");
 				return false;
+			}
 			else
+			{
+				System.out.println("Its is false");
 				return true;
+			}
 			
 	  }
 		catch(Exception e)

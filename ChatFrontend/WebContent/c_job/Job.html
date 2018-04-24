@@ -1,47 +1,33 @@
 	<div ng-controller="JobController">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="text-center">Add Job</h1>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<form class="col-md-12 center-block" id="jobForm" method="POST">
-						<div class="form-group">
-							Company name<input type="text" class="form-control input-md" name="Company"
-								placeholder="" ng-model="job.Company" />
-						</div>
-						<div class="form-group">
-							Job Description<input type="text" class="form-control input-md" name="jobDescription"
-								placeholder="" ng-model="job.jobDescription" />
-						</div>
-						<div class="form-group">
-							Job Title<input type="text" class="form-control input-md" name="jobTitle"
-								placeholder="" ng-model="job.jobTitle" />
-						</div>
-						<div class="form-group">
-							Salary<input type="text" class="form-control input-md" name="salary"
-								placeholder="" ng-model="job.salary" />
-						</div>
-						<div class="form-group">
-						Location<select class="form-control input-md" name="location" ng-model="job.location">
+	
+				<h1 >Add Job</h1>
+			
+					<form  method="POST">
+						
+							Company name<input type="text"  name="company" placeholder="" ng-model="job.company" /><br/>
+						    					
+							Job Description<input type="text" name="jobDescription" placeholder="" ng-model="job.jobDescription" /><br/>
+						
+						
+							Job Title<input type="text" name="jobTitle"	placeholder="" ng-model="job.jobTitle" /><br/>
+							
+							Salary<input type="text" name="salary" placeholder="" ng-model="job.salary" /><br/>
+						
+						
+						Location<select  name="location" ng-model="job.location">
                                <option value="Select Location">Select Your Location</option>
                                <option value="Dimapur">Dimapur</option>
                                <option value="Kolkata">Kolkata</option>
                                <option value="Bangalore">Bangalore</option>
                                <option value="Delhi">Delhi</option>
                                </select>
-						</div>
 						
-						<div class=form-group>
-							<input type="submit" class="btn btn-lg btn-success"
-								value="Add" ng-click="insertJob()"/> <input
-								type="reset" class="btn btn-lg btn-default" value="Reset"/>
-						</div>
+						<br/>
+						
+							<input type="submit" value="Add" ng-click="insertJob()"/><br/>
+							 <input	type="reset" value="Reset"/>
+					
 					</form>
-				</div>
+				
 			</div>
-		</div>		
-	</div>
-
-</div>
+	

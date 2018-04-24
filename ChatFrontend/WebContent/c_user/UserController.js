@@ -1,6 +1,21 @@
 myApp.controller("UserController",function($scope,$http,$location,$rootScope,$cookieStore)
 {
-	$scope.user={userName:'',password:'',role:'',email:'',address:'',status:''};
+	$scope.user={userName:'',password:'',role:'',email:'',gender:'',status:'',dob:'',status:'',contactNo:'',age:''};
+	
+
+	
+	
+	$scope.Register=function()
+	{
+		console.log("Enter into Register Method");
+		$http.post('http://localhost:8081/ChatMidWare/addUser',$scope.user)
+		.then(fetchAllUser(),function(response)
+     	{
+			console.log('Status Text:'+response.statusText);
+			$scope.msg="Data inserted sucessfully";
+		
+	     });			
+	};
 	
 	$rootScope.login=function()
 	{
@@ -14,7 +29,7 @@ myApp.controller("UserController",function($scope,$http,$location,$rootScope,$co
 				$rootScope.currentUser=response.data;
 				$cookieStore.put('userDetails',response.data);
 				console.log($rootScope.currentUser.role);
-					if($rootScope.currentUser.role=="ROLEADMIN")
+					if($rootScope.currentUser.role=="ROLE_ADMIN")
 					{
 						console.log('AdminPage');
 					}
@@ -22,7 +37,7 @@ myApp.controller("UserController",function($scope,$http,$location,$rootScope,$co
 					{
 						console.log('UserPage');
 					}
-				$location.path("/UserHome");
+					$location.path("/UserHome");
 			});
 	};
 	$rootScope.logout=function()
@@ -32,5 +47,20 @@ myApp.controller("UserController",function($scope,$http,$location,$rootScope,$co
 		$cookieStore.remove('userDetails');
 		$location.path("/Logout");
 	}
+	function fetchAllUser()
+	{
+		console.log('Fetching All Users');
+		$http.get("http://localhost:8081/ChatMidWare/listUsers")
+		.then(function(response)
+				{
+			            $scope.userdata=response.data;
+				});
+	}
+	
+	
+	
+	
+	//fetchAllUser();
 	
 });
+
