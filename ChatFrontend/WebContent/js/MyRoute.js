@@ -54,6 +54,13 @@ myApp.config(function($routeProvider) {
 	.when("/chat", {
 		templateUrl : "c_chat/chat.html"
 	})
+	.when("/friend", {
+	templateUrl : "c_friend/Friend.html"
+    })
+    .when("/manage",{
+	templateUrl : "c_blog/manage.html"
+    })
+
 });
 
 

@@ -30,6 +30,7 @@
 <script src="c_job/JobController.js"></script>
 <script src="c_chat/ChatController.js"></script>
 <script src="c_chat/ChatService.js"></script>
+<script src="c_friend/FriendController.js"></script>
 
 </head>
 <body ng-app="myApp">

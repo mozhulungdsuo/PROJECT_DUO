@@ -14,6 +14,7 @@ public boolean approveBlog(Blog blog);
 public boolean rejectBlog(Blog blog);
 public List<Blog> listBlog(String username);
 public boolean incrementLikes(Blog blog);
+public List<Blog> listAllBlog();
 
 
 public boolean addBlogComment(BlogComment blogComment);

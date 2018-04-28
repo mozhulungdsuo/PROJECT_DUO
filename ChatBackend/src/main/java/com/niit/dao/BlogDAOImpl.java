@@ -37,10 +37,12 @@ public class BlogDAOImpl implements BlogDAO{
 	public boolean updateBlog(Blog blog) {
 		try
 		{
-			sessionFactory.getCurrentSession().update(blog);			
+			sessionFactory.getCurrentSession().update(blog);	
+			System.out.println("Test 1");
 		    return true;
 		}catch(Exception e)
 		{
+			System.out.println("Test 2");
 		      return false;
 		}
 	}
@@ -86,6 +88,15 @@ public class BlogDAOImpl implements BlogDAO{
 		
 		Query query = session.createQuery("from Blog where username = :name",Blog.class);
 		query.setParameter("name", username);//user1 is a preexisting user
+		List<Blog> pl=query.getResultList();
+		return pl;
+	}
+	
+	@Transactional
+	public List<Blog> listAllBlog() {
+		Session session=sessionFactory.openSession();
+		
+		Query query = session.createQuery("from Blog ",Blog.class);		
 		List<Blog> pl=query.getResultList();
 		return pl;
 	}

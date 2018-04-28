@@ -40,7 +40,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	
 	
 	//add this during chat
-	  
+	 
 	@Override
 	protected Filter[] getServletFilters(){
 	CharacterEncodingFilter encodingFilter=new CharacterEncodingFilter();
@@ -48,6 +48,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	return new Filter[] {encodingFilter};
 	
 	}	
+	
 	  
      
 

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table
+@Table(name="Blog")
 public class Blog {
 	@Id
 	@GeneratedValue(generator="blog_sequence", strategy= GenerationType.SEQUENCE)

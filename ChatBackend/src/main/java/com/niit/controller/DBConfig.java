@@ -19,6 +19,8 @@ import com.niit.dao.BlogDAO;
 import com.niit.dao.BlogDAOImpl;
 import com.niit.dao.ForumDAO;
 import com.niit.dao.ForumDAOImpl;
+import com.niit.dao.FriendDAO;
+import com.niit.dao.FriendDAOImpl;
 import com.niit.dao.JobDAO;
 import com.niit.dao.JobDAOImpl;
 import com.niit.dao.ProfileUpdateDAO;
@@ -30,6 +32,7 @@ import com.niit.model.Blog;
 import com.niit.model.BlogComment;
 import com.niit.model.Forum;
 import com.niit.model.ForumComment;
+import com.niit.model.Friend;
 import com.niit.model.Job;
 import com.niit.model.ProfilePicture;
 import com.niit.model.UserDetails;
@@ -74,6 +77,7 @@ public class DBConfig {
 		sessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
 		System.out.println("<--------------ForumComment Class Added-------------->");
 		sessionFactoryBuilder.addAnnotatedClass(ProfilePicture.class);
+		sessionFactoryBuilder.addAnnotatedClass(Friend.class);
 		sessionFactoryBuilder.addProperties(hibernateProp);
 		System.out.println("Table created???");
 		SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
@@ -113,6 +117,12 @@ public class DBConfig {
 	{
 		System.out.println("profile DAO found");
 		return new ProfileUpdateDAOImpl();
+	}
+	@Bean(name="friendDAO")
+	public FriendDAO getFriendDAOImpl()
+	{
+		System.out.println("FriendDAO found");
+		return new FriendDAOImpl();
 	}
 	@Autowired
 	@Bean(name="transactionManager")	

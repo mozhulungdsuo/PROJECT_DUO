@@ -54,23 +54,23 @@ myApp.controller("BlogController", function($scope, $http, $location,$route) {
 		$http.get('http://localhost:8081/ChatMidWare/getById/'+blogId)
 		.then(function(response){
 			console.log('In edit blog');
-			cosole.log(blogId);
+			console.log(blogId);
 			$scope.blog = response.data;			
-			$location.path('/changeBlog');
+			//$location.path('/changeBlog');
 		});
 	};
 	$scope.updateBlog=function(blogId)
 	{
 		console.log('Enter into the update blog method');
 		console.log(blogId);
-		$http.post('http://localhost:8081/ChatMidWare/Update/'+blogId)
+		$http.put('http://localhost:8081/ChatMidWare/UpdateBlog/'+blogId,$scope.blog)
 		.then(fetchAllBlogs(),function(response)
 				{
 			
 			        console.log('Status Text:'+response.statusText);
-			    	//$route.reload()
+			        $route.reload()			   
 			        $location.path("/listBlogs");
-			        
+			      
 				});
 	};
 	

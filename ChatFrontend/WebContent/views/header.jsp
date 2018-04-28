@@ -14,12 +14,14 @@
      				
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'"><a href="#!Blog">Blog</a></li>
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'"> <a href="#!listBlogs"> List Blogs</a></li>
+				
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'" ><a href="#!Forum">Forum</a>	</li>
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'"><a href="#!displayForum">List Forums</a></li>
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!Job">Job</a></li>
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!displayJob">Job Lists</a></li>	
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'"><a href="#!ProfileUpdate">Profile Pic</a></li>		
 				<li ng-hide="currentUser==undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!chat">Chat</a></li>
+				<li ng-hide="currentUser==undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!friend">Friend</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" >
       <li ng-hide="currentUser.role=='ROLE_USER'|| currentUser.role=='ROLE_ADMIN'"><a href="#!AboutUs">About Us</a></li>

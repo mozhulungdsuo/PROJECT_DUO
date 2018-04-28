@@ -2,12 +2,15 @@ package com.niit.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +32,7 @@ public class BlogController {
 		@GetMapping(value="/listBlogs")
 		public ResponseEntity<List<Blog>>  getListBlogs()
 		{
-			List<Blog> listBlogs=blogDAO.listBlog("Ben");
+			List<Blog> listBlogs=blogDAO.listAllBlog();
 			if(listBlogs.size()>0)
 			{
 			return new ResponseEntity<List<Blog>>(listBlogs,HttpStatus.OK);
@@ -40,12 +43,12 @@ public class BlogController {
 			}
 		}
 		@PostMapping(value="/addBlog")
-		public ResponseEntity<String> addBlog(@RequestBody Blog blog)
+		public ResponseEntity<String> addBlog(@RequestBody Blog blog, HttpSession session)
 		{
 		   blog.setCreatedate(new java.util.Date());		 
 			blog.setLikes(0);
-			blog.setUsername("Ben");
-			blog.setStatus("A");
+			blog.setUsername((String)session.getAttribute("userName"));
+			blog.setStatus("NA");
 		 if (blogDAO.addBlog(blog))
 		 {
 			 return new  ResponseEntity<String>("Success",HttpStatus.OK);
@@ -69,13 +72,13 @@ public class BlogController {
 	        return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	    }
 		
-		 @RequestMapping(value = "/Update/{blogId}", method = RequestMethod.PUT)
+		@RequestMapping(value = "/UpdateBlog/{blogId}" , method = RequestMethod.PUT)
 		    public ResponseEntity<Blog> update(@PathVariable("blogId") int blogId, @RequestBody Blog blog){
-		       
+		       System.out.println(blog.getBlogId());
 			   Blog blogs = blogDAO.getBlog(blogId);
 
 		        if (blogs == null){
-		            
+		            System.out.println("Blog update not possible");
 		            return new ResponseEntity<Blog>(HttpStatus.NOT_FOUND);
 		        }
 

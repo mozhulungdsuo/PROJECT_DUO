@@ -9,7 +9,7 @@ $(document).ready(function(){
 	$("#btnUpdateBlog").click(function(){
 		$("#editBlogForm").modal('hide');
 	});
-});
+	});
 </script>
 
 
@@ -41,11 +41,11 @@ $(document).ready(function(){
                         <td>{{blog.blogContent}}</td>                     
                         <td>{{blog.likes}}</td>
                         <td>{{blog.status}}</td>
-                       <td colspan="7px">
+                       <td colspan="3px">
                             <button type="button" ng-click="incrementLike(blog.blogId)"  class="btn btn-info btn btn" ><span class="glyphicon glyphicon-thumbs-up"></span></a>
-                          <button type="button" ng-hide ="currentUser.userName!=blog.username" ng-click="deleteBlog(blog.blogId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a></button>
-                            <button type="submit" ng-hide ="currentUser.userName!=blog.username" ng-click="editBlog(blog.blogId)" class="btn btn-success" id="btnShowEditForm" data-target="#editBlogForm" data-toggle="modal" ><span class="glyphicon glyphicon-pencil"></span></a>
-                          <button type="submit" class="btn btn-primary btn-md">Comment</button>
+                            <button type="button" ng-click="deleteBlog(blog.blogId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+                            <button type="submit" ng-click="editBlog(blog.blogId)" class="btn btn-success" id="btnShowEditForm" data-target="#editBlogForm" data-toggle="modal" ><span class="glyphicon glyphicon-pencil"></span></a>
+                          
          </tr>
  </tbody>
 </table>
@@ -69,7 +69,7 @@ $(document).ready(function(){
         </div>
         <div class="modal-body">
           
-					<form class="col-md-12 center-block" id="blogForm" method="POST">
+					<form class="col-md-12 center-block" id="blogForm" method="PUT">
 					<div class="form-group">
 							<input type="hidden" class="form-control input-lg" name="blogId"
 							 ng-model="blog.blogId" />
