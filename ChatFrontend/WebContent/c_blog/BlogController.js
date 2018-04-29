@@ -9,8 +9,20 @@ myApp.controller("BlogController", function($scope, $http, $location,$route) {
 		"userName" : '',
 		"status" : ''
 	}
+	
 
 	$scope.blogData;
+	
+	$scope.blogcomment={
+			
+			"blogId":'',
+			"commentDate":'',
+		    "username":'',			
+			"commentText":''
+					
+	}
+	$scope.blogcommentData;
+	
 
 	$scope.insertBlog = function() {
 		alert("In insert blog");
@@ -83,6 +95,50 @@ myApp.controller("BlogController", function($scope, $http, $location,$route) {
 					$scope.blogData = response.data;
 				});
 	};
+	$scope.listblogComments = function(blogId){
+
+		$http.get('http://localhost:8081/ChatMidWare/listBlogComments/'+blogId)
+		.then(function(response){
+			console.log('In edit blog');
+			console.log(blogId);
+			$scope.blogcommentData = response.data;			
+			//$location.path('/changeBlog');
+		});
+	};
+	$scope.deleteBlogComment = function(commentId){
+		//alert("in delete blog");
+		$http.delete('http://localhost:8081/ChatMidWare/deleteBlogComment/'+commentId)
+		.then(fetchAllBlogs(), function(response){
+			
+		    console.log('Response Status ' + response.statusText);
+		    $route.reload();
+			
+			
+		});
+	};
+	
+	
+	
+	
+	$scope.insertblogComment = function(blogId) {
+		alert("In insert blog comment ");
+		
+		$http.post('http://localhost:8081/ChatMidWare/addBlogComment/'+blogId,
+				$scope.blogcomment).then( function(response) {
+					console.log('Status Text ' + response.statusText);
+					$route.reload();					
+					$location.path('/listBlogs');
+			
+		});
+	};
+	/*function fetchAllBlogComments(blogId) {
+		console.log('In coomment method');
+		$http.get('http://localhost:8081/ChatMidWare/listBlogComments/{blogid}').then(
+				function(response) {
+					//console.log('Status Text ' + response.statusText);
+					$scope.blogcommentData = response.data;
+				});
+	};*/
 	
 	
 	fetchAllBlogs();

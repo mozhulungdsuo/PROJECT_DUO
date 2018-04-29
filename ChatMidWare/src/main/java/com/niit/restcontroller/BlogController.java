@@ -147,13 +147,13 @@ public class BlogController {
 				 return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
 			 }
 	     }
-		 @PostMapping(value="/addBlogComment"  )
-		  	public ResponseEntity<String>addblogcomment(@RequestBody BlogComment blogComment)
+		 @PostMapping(value="/addBlogComment/{blogId}"  )
+		  	public ResponseEntity<String>addblogcomment(@RequestBody BlogComment blogComment,@PathVariable("blogId")int blogId, HttpSession session)
 		  	{
 		  		System.out.println("in add comment control");
-		  		
+		  		blogComment.setBlogId(blogId);
 		  		blogComment.setCommentDate(new java.util.Date());       
-		  		blogComment.setBlogId(555);// need to check?
+		  	    blogComment.setUsername(((String)session.getAttribute("userName")));
 		  	
 		   		
 		  				
@@ -200,11 +200,11 @@ public class BlogController {
 
 	          return new ResponseEntity<BlogComment>(comments, HttpStatus.OK);
 	      }
-		 @GetMapping(value="/listBlogComments")
-		  	public ResponseEntity<List<BlogComment>> getListBlogComment()
+		 @GetMapping(value="/listBlogComments/{blogid}")
+		  	public ResponseEntity<List<BlogComment>> getListBlogComment(@PathVariable("blogid")int blogid)
 		  	{
 		  		
-		  		List<BlogComment> listBlogComments=blogDAO.listBlogComment(555);
+		  		List<BlogComment> listBlogComments=blogDAO.listBlogComment(blogid);
 		  		return new ResponseEntity<List<BlogComment>>(listBlogComments,HttpStatus.OK);
 		  		
 		  	}
