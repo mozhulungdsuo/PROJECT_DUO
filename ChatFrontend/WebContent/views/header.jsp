@@ -21,7 +21,7 @@
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!displayJob">Job Lists</a></li>	
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'"><a href="#!ProfileUpdate">Profile Pic</a></li>		
 				<li ng-hide="currentUser==undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!chat">Chat</a></li>
-				<li ng-hide="currentUser==undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!friend">Friend</a></li>
+				<li ng-hide="currentUser==undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!friend">Find Friends</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" >
       <li ng-hide="currentUser.role=='ROLE_USER'|| currentUser.role=='ROLE_ADMIN'"><a href="#!AboutUs">About Us</a></li>

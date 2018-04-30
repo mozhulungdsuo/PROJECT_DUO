@@ -62,7 +62,7 @@ public class FriendDAOImpl implements FriendDAO{
 		
 	
 		@SuppressWarnings("deprecation")
-		Query query=session.createSQLQuery("select * from UserDetails where userName not in(select frienduserName from Friend where userName='" +userName+"')");
+		Query query=session.createSQLQuery("select * from UserDetails where userName not in(select frienduseName from Friend where userName='" +userName+"')");
 		List<UserDetails>suggestFriend=(List<UserDetails>)query.list();
 		return suggestFriend;
 	}

@@ -2,7 +2,7 @@ myApp.controller("UserController",function($scope,$http,$location,$rootScope,$co
 {
 	$scope.user={userName:'',password:'',role:'',email:'',gender:'',status:'',dob:'',status:'',contactNo:'',age:''};
 	
-
+$scope.userdata;
 	
 	
 	$scope.Register=function()
@@ -60,7 +60,7 @@ myApp.controller("UserController",function($scope,$http,$location,$rootScope,$co
 	
 	
 	
-	//fetchAllUser();
+	fetchAllUser();
 	
 });
 

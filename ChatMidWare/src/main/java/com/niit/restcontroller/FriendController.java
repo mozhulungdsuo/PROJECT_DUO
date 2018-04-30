@@ -22,10 +22,13 @@ public class FriendController {
 	
 @Autowired
 FriendDAO friendDAO;
-@PostMapping(value="/sendFriendRequest")
-public ResponseEntity<String> sendFriendRequest(@RequestBody Friend friend)
+@PostMapping(value="/sendFriendRequest/{frienduseName}",headers = {"Accept=application/json"})
+public ResponseEntity<String> sendFriendRequest(@PathVariable("frienduseName") String frienduseName,HttpSession session)
 {
-	
+	Friend friend = new Friend();
+	friend.setStatus("P");
+	friend.setUserName((String)session.getAttribute("userName"));
+	friend.setFrienduseName(frienduseName);
 	if(friendDAO.sendFriendRequest(friend))
 	{
 		return new ResponseEntity<String>("Success",HttpStatus.OK);
@@ -105,6 +108,24 @@ System.out.println(listPendingRequestsFriend.size()+" is pending");
 	}
 }
 
+
+@GetMapping(value="/testFriends")
+public ResponseEntity<List<UserDetails>> testFriends(HttpSession session)
+{
+	
+   String userName=((UserDetails) session.getAttribute("userName")).getUserName();
+   List<UserDetails>listAllFriend=friendDAO.showSuggestedFriend(userName);
+	
+	if(listAllFriend.size()>0)
+	{
+		return new ResponseEntity<List<UserDetails>>(listAllFriend,HttpStatus.OK);
+		
+	}
+	else
+	{
+		return new ResponseEntity<List<UserDetails>>(listAllFriend,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}
 
 }
 	
