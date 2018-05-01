@@ -31,6 +31,13 @@
                        <td>                            
                             <button type="button" ng-click="deleteForum(forum.forumId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
                          </button>
+                         <button type="submit" ng-hide ="currentUser.userName==forum.username"   ng-click="editForum(forum.forumId)" 
+                          class="btn btn-primary btn-md" id="btnShowAddComment" 
+                          data-target="#addForumComment" data-toggle="modal" >Comment</button>
+                          
+                          <button type="submit" ng-click="listForumComments(forum.forumId)"  
+                          class="btn btn-primary btn-md" id="btnShowComment"
+                           data-target="#viewForumComment" data-toggle="modal" >View Comments</button>
                          </td>
                            
                           
@@ -42,7 +49,100 @@
 </div>
 </div>
 </div>
+<!-- add comment modal part -->
+<div class="modal fade" id="addForumComment" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Comment</h4>
+        </div>
+        <div class="modal-body">
+          
+					<form class="col-md-12 center-block" id="forumForm" method="POST">
+					<div class="form-group">
+							<input type="hidden" class="form-control input-lg" name="forumId"
+							 ng-model="forum.forumId" />
+							 {{forum.forumId}}
+						</div>
+						<div class="form-group">
+							<textarea class="form-control input-lg" rows="3"
+								name="forumContent" placeholder="forum content"
+								ng-model="forumcomment.commentText"></textarea>
+						</div>
+						<div class=form-group>
+							<input type="submit" class="btn btn-lg btn-success"
+								value="Add Comment" ng-click="insertForumComment(forum.forumId)" id="btnAddComment" data-dismiss="modal" > <input
+								type="reset" class="btn btn-lg btn-default" value="Reset">
+						</div>
+					</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+ <!-- view comment modal part  --> 
+  
+  <div class="modal fade" id="viewForumComment" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Comments</h4>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+<table class="table table-hover">
+ <thead>
+ <tr>
+ 
+  <th>UserName</th>
+  <th>Comment</th>  
+  <th>Date</th>         
+  <th>Action</th>
+  </tr>
+ </thead>
+<tbody>
+       <tr ng-repeat="forumcomment in forumcommentData">
+                       
+                        <td>{{forumcomment.userName}}</td>
+                        <td>{{forumcomment.commentText}}</td> 
+                         <td>{{forumcomment.commentDate}}</td>                       
+                       <td colspan="3px">
+                            
+                          <button type="button" ng-click="deleteForumComment(forumcomment.commentId)" class="btn btn-danger" data-dismiss="modal" ><span class="glyphicon glyphicon-trash"></span></a></button>
+                        </td>
+                            
+         </tr>
+ </tbody>
+</table>
+					
+      </div>
+      
+    </div>
+  </div>
+  
 </div>
+</div>
+  
+  
+  
+  </div>
+  
+
+
+
+
+
+
+
 
 
 

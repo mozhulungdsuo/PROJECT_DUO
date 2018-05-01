@@ -86,15 +86,15 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 	@Transactional
-	public List<Forum> listForum(String username) {
+	public List<Forum> listForum() {
 Session session=sessionFactory.openSession();
 		
-		Query query = session.createQuery("from Forum where username = :name",Forum.class);
-		query.setParameter("name", username);//user1 is a preexisting user
+		Query query = session.createQuery("from Forum ",Forum.class);
+		//query.setParameter("name", username);//user1 is a preexisting user
 		List<Forum> pl=query.getResultList();
 		return pl;
 	}
-	
+	@Transactional
 	public boolean addForumComment(ForumComment forumComment) {
 		try
 		{
@@ -106,6 +106,7 @@ Session session=sessionFactory.openSession();
 			return false;
 		}
 	}
+	@Transactional
 	public boolean deleteForumComment(ForumComment forumComment) {
 		try
 		{
@@ -117,6 +118,7 @@ Session session=sessionFactory.openSession();
 			return false;
 		}
 	}
+	
 	public ForumComment getForumComment(int commentId) {
 		try
 		{
@@ -130,6 +132,7 @@ Session session=sessionFactory.openSession();
 			return null;
 		}
 	}
+	
 	public List<ForumComment> listForumComment(int forumId) {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from ForumComment where forumId=:forumId");

@@ -1,8 +1,8 @@
 myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 {
 	$scope.friend={"userName":'',"frienduseName":'',"status":''};
-	$scope.acceptfrienddata;
-	$scope.pendingFriendRequest;
+	$scope.users={"userName":'',"password":'',"role":'',"email":'',"gender":'',"status":'',"dob":'',"status":'',"contactNo":'',"age":''};
+	
 	$scope.suggestedFriend;
 	$scope.insertFriend = function(frienduseName) {
 		
@@ -22,7 +22,7 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 		.then(function(response){
 			
 	       
-			$scope.suggestedFriend = response.data;	
+			$scope.users = response.data;	
 		});
 	};
 	function friendData()

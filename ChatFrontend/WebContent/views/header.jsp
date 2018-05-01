@@ -19,7 +19,15 @@
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'"><a href="#!displayForum">List Forums</a></li>
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!Job">Job</a></li>
 				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!displayJob">Job Lists</a></li>	
-				<li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'"><a href="#!ProfileUpdate">Profile Pic</a></li>		
+				 <li ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN'">
+				 <a href="#!Update">Update Profile</a></li>
+              
+                
+				
+				
+				
+				
+					
 				<li ng-hide="currentUser==undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!chat">Chat</a></li>
 				<li ng-hide="currentUser==undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!friend">Find Friends</a></li>
       </ul>

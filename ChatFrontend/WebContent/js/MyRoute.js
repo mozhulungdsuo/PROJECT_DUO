@@ -48,9 +48,6 @@ myApp.config(function($routeProvider) {
 	.when("/UserHome",{
 		templateUrl : "c_user/UserHome.html"
 	})
-	.when("/ProfileUpdate", {
-		templateUrl : "c_user/ProfileUpdate.html"
-	})
 	.when("/chat", {
 		templateUrl : "c_chat/chat.html"
 	})
@@ -60,6 +57,10 @@ myApp.config(function($routeProvider) {
     .when("/manage",{
 	templateUrl : "c_blog/manage.html"
     })
+    .when("/Update",{
+    	templateUrl :"c_user/Update.html"
+    })
+  
 
 });
 

@@ -45,7 +45,7 @@ public class UserController {
     public ResponseEntity<UserDetails> get(@PathVariable("userName") String userName){
         
         UserDetails user = userDAO.getUser(userName);
-
+      System.out.println(userName);
         if (user == null){
            
             return new ResponseEntity<UserDetails>(HttpStatus.NOT_FOUND);
@@ -55,20 +55,20 @@ public class UserController {
     }
 	
 	 @RequestMapping(value = "/UpdateUser/{userName}", method = RequestMethod.PUT)
-	    public ResponseEntity<UserDetails> update(@PathVariable("userName") String userName){
+	    public ResponseEntity<UserDetails> update(@RequestBody UserDetails user,@PathVariable("userName") String userName){
 	       
-		   UserDetails users = userDAO.getUser(userName);
+		   UserDetails user1 = userDAO.getUser(userName);
 
-	        if (users == null){
+	        if (user1 == null){
 	            
 	            return new ResponseEntity<UserDetails>(HttpStatus.NOT_FOUND);
 	        }
 
-	                     users.setContactNo(users.getContactNo()); //update more?
+	                     //users.setContactNo(users.getContactNo()); //update more?
 	                    
-	                       userDAO.updateUser(users);
+	                       userDAO.updateUser(user);
 	        
-	        return new ResponseEntity<UserDetails>(users, HttpStatus.OK);
+	        return new ResponseEntity<UserDetails>(user, HttpStatus.OK);
 	    }
 
 	 @RequestMapping(value ="/deleteUser/{userName}",method=RequestMethod.DELETE)

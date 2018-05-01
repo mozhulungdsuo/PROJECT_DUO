@@ -1,29 +1,30 @@
-<div class="container-fluid" ng-controller="UserController">
+ <div class="container-fluid" ng-controller="UserController"> 
+                 <li  ng-hide="currentUser==undefined" ng-show="currentUser.role=='ROLE_USER'">
+                 <a href="#editTheForm" ng-click="editUser(currentUser.userName)" data-toggle="modal"> View Profile</a></li>
+   
+ <div class="modal fade" id="editTheForm" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog">  
 		<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="text-center">Register User</h1>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit User</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
 					<form class="col-md-12 center-block" id="blogForm" method="POST">
-					 <div class="form-group">
-					<label for="userName">
-						User Name
-					</label>
-					<input type="text" class="form-control" id="userName"  ng-model="user.userName" />
-				</div>
+					 
+					
 				 <div class="form-group">
 					<label for="firstName">
 						First Name
 					</label>
-					<input type="text" class="form-control" id="firstName"  ng-model="user.firstname" />
+					<input type="text" class="form-control" id="firstName"  ng-model="user.firstName" />
 				</div>
 				<div class="form-group">
 					<label for="lastName">
 						Last Name
 					</label>
-					<input type="text" class="form-control" id="lastName"  ng-model="user.lastname" />
+					<input type="text" class="form-control" id="lastName"  ng-model="user.lastName" />
 				</div>
 				<div class="form-group">
 				<label for="email">
@@ -39,13 +40,7 @@
 					</label>
 					<input type="text" class="form-control" id="gender"  ng-model="user.gender" />
 				</div>
-				<div class="form-group">
-					 
-					<label for="dob">
-						Date of Birth
-					</label>
-					<input type="date" class="form-control" id="dob"  ng-model="user.dob" />
-				</div>
+				
 				<div class="form-group">
 					 
 					<label for="Age">
@@ -60,16 +55,10 @@
 						Contact Number
 					</label>
 					<input type="text" class="form-control" id="contactNo"  ng-model="user.contactNo" />
-				</div>
+				</div>		
 				
 				
 				
-				<div class="form-group">					 
-					<label for="password">
-						Password
-					</label>
-					<input type="password" class="form-control" id="password" ng-model="user.password"  />
-				</div>
 				<div class="form-group">
 				
 				<input type="submit" value="Register" class="btn btn-primary" ng-click="Register()">
@@ -79,5 +68,6 @@
 			</div>
 		</div>		
 	</div>
-
 </div>
+</div>
+                

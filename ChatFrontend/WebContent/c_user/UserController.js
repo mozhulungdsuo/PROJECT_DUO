@@ -1,6 +1,6 @@
 myApp.controller("UserController",function($scope,$http,$location,$rootScope,$cookieStore)
 {
-	$scope.user={userName:'',password:'',role:'',email:'',gender:'',status:'',dob:'',status:'',contactNo:'',age:''};
+	$scope.user={userName:'',password:'',role:'',email:'',gender:'',status:'',dob:'',status:'',contactNo:'',age:'',firstname:'',lastname:''};
 	
 $scope.userdata;
 	
@@ -16,7 +16,31 @@ $scope.userdata;
 		
 	     });			
 	};
-	
+	$scope.updateUser=function(userName)
+	{
+		console.log('Enter into the update  method');
+		console.log(userName);
+		$http.put('http://localhost:8081/ChatMidWare/UpdateUser/'+userName,$scope.user)
+		.then(fetchAllUser(),function(response)
+				{
+			
+			        console.log('Status Text:'+response.statusText);
+			        //$route.reload()			   
+			       // $location.path("/listBlogs");
+			      
+				});
+	};
+	$scope.editUser = function(userName){
+        alert("ello");
+        console.log("edit Function");
+		$http.get('http://localhost:8081/ChatMidWare/getUserById/'+userName)
+		.then(function(response){
+			//console.log('In edit blog');
+			console.log(userName);
+			$scope.user = response.data;			
+			//$location.path('/changeBlog');
+		});
+	};
 	$rootScope.login=function()
 	{
 		console.log("Logging Function");

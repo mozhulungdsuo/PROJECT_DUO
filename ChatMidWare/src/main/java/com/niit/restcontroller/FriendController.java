@@ -112,8 +112,9 @@ System.out.println(listPendingRequestsFriend.size()+" is pending");
 @GetMapping(value="/testFriends")
 public ResponseEntity<List<UserDetails>> testFriends(HttpSession session)
 {
-	
-   String userName=((UserDetails) session.getAttribute("userName")).getUserName();
+	System.out.println("Test 1");
+   String userName= ((String) session.getAttribute("userName"));
+   System.out.println("Test 12");
    List<UserDetails>listAllFriend=friendDAO.showSuggestedFriend(userName);
 	
 	if(listAllFriend.size()>0)

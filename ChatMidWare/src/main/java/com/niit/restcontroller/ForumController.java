@@ -2,6 +2,8 @@ package com.niit.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.dao.ForumDAO;
 import com.niit.model.Blog;
+import com.niit.model.BlogComment;
 import com.niit.model.Forum;
+import com.niit.model.ForumComment;
 
 @RestController
 public class ForumController {
@@ -36,7 +40,7 @@ public class ForumController {
 	public ResponseEntity<List<Forum>> getListForums()
 	{
 		
-		List<Forum> listForums=forumDAO.listForum("aben");
+		List<Forum> listForums=forumDAO.listForum();
 		if(listForums.size()>0)
 		{
 		return new ResponseEntity<List<Forum>>(listForums,HttpStatus.OK);
@@ -50,13 +54,13 @@ public class ForumController {
 	
 	
 	@PostMapping(value="/addForum"  )
-	public ResponseEntity<String>addforum(@RequestBody Forum forum)
+	public ResponseEntity<String>addforum(@RequestBody Forum forum,HttpSession session)
 	{
 		System.out.println("rest controller in add");
 		
 		forum.setCreatedate(new java.util.Date());
 	
-		forum.setUsername("aben");
+		forum.setUsername((String)session.getAttribute("userName"));
 		forum.setStatus("A");
 		if(forumDAO.addForum(forum))
 		{
@@ -162,4 +166,63 @@ public class ForumController {
 		        return new ResponseEntity<Forum>(forums, HttpStatus.OK);
 		    }
 		 
+		 @PostMapping(value="/addForumComment/{forumId}"  )
+		  	public ResponseEntity<String>addForumComment(@RequestBody ForumComment forumcomment,@PathVariable("forumId")int forumId, HttpSession session)
+		  	{
+		  		System.out.println("in add comment control");
+		  		forumcomment.setForumId(forumId);
+		     	forumcomment.setCommentDate(new java.util.Date());
+		  	    forumcomment.setUserName((String)session.getAttribute("userName"));
+		   		
+		  				
+		  				
+		  		if(forumDAO.addForumComment(forumcomment))
+		  		{
+		  			return new ResponseEntity<String>("Success",HttpStatus.OK);
+		  		}
+		  		else
+		  		{
+		  			return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
+		  		}
+		  		
+		  		
+		  	}
+		 @RequestMapping(value ="/deleteForumComment/{commentId}",method=RequestMethod.DELETE)
+	 	 public ResponseEntity<String> deleteForumComment(@PathVariable("commentId") int commentId) 
+	 	 {
+	 	       
+	 		   ForumComment comments = forumDAO.getForumComment(commentId);
+
+	 	        if (comments == null){
+	 	            
+	 	            return new ResponseEntity<String>("Failure",HttpStatus.NOT_FOUND);
+	 	        }
+
+	 
+	 	                    
+	 	                       forumDAO.deleteForumComment(comments);
+	 	        
+	 	        return new ResponseEntity<String>("Success", HttpStatus.OK);
+	 	    }
+
+		 @RequestMapping(value = "/getByForumCommentId/{commentId}", method = RequestMethod.GET)
+	      public ResponseEntity<ForumComment> getComment(@PathVariable("commentId") int commentId){
+	          
+	          ForumComment comments = forumDAO. getForumComment(commentId);
+
+	          if (comments == null){
+	             
+	              return new ResponseEntity<ForumComment>(HttpStatus.NOT_FOUND);
+	          }
+
+	          return new ResponseEntity<ForumComment>(comments, HttpStatus.OK);
+	      }
+		 @GetMapping(value="/listForumComments/{forumId}")
+		  	public ResponseEntity<List<ForumComment>> getListBlogComment(@PathVariable("forumId")int forumId)
+		  	{
+		  		
+		  		List<ForumComment> listForumComments=forumDAO.listForumComment(forumId);
+		  		return new ResponseEntity<List<ForumComment>>(listForumComments,HttpStatus.OK);
+		  		
+		  	}
 }
