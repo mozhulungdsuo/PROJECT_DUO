@@ -71,11 +71,11 @@ public ResponseEntity<String> acceptFriendRequest(@PathVariable("friendId") int 
 	}
 }
 
-@GetMapping(value="/showAllFriends")
-public ResponseEntity<List<Friend>> showAllFriends(HttpSession session)
+@GetMapping(value="/showAllFriends/{userName}")
+public ResponseEntity<List<Friend>> showAllFriends(HttpSession session,@PathVariable("userName") String userName)
 {
 	
-   String userName=((UserDetails)session.getAttribute("userName")).getUserName();
+   //String userName=((UserDetails)session.getAttribute("userName")).getUserName();
    List<Friend>listAllFriend=friendDAO.showAllFriends(userName);
 	
 	if(listAllFriend.size()>0)
@@ -89,11 +89,11 @@ public ResponseEntity<List<Friend>> showAllFriends(HttpSession session)
 	}
 }
 
-@GetMapping(value="/showPendingRequest")
-public ResponseEntity<List<Friend>> showPendingRequest(HttpSession session)
+@GetMapping(value="/showPendingRequest/{userName}")
+public ResponseEntity<List<Friend>> showPendingRequest(HttpSession session,@PathVariable("userName") String userName)
 {
 	
-   String userName=((UserDetails)session.getAttribute("userName")).getUserName();
+   //String userName=((UserDetails)session.getAttribute("userName")).getUserName();
    List<Friend>listPendingRequestsFriend=friendDAO.showRequestPendingList(userName);
 	
 System.out.println(listPendingRequestsFriend.size()+" is pending");
@@ -125,6 +125,25 @@ public ResponseEntity<List<UserDetails>> testFriends(HttpSession session)
 	else
 	{
 		return new ResponseEntity<List<UserDetails>>(listAllFriend,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}
+@GetMapping(value="/showPendingRequestNumber/{userName}")
+public int showPendingRequestNumber(HttpSession session,@PathVariable("userName") String userName)
+{
+	
+   
+	//String userName="a";
+   List<Friend>listPendingRequestsFriend=friendDAO.showRequestPendingList(userName);
+	
+System.out.println(listPendingRequestsFriend.size()+" is pending");
+	if(listPendingRequestsFriend.size()>0)
+	{
+		return listPendingRequestsFriend.size();
+		
+	}
+	else
+	{
+		return  0;
 	}
 }
 

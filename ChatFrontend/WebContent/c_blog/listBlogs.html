@@ -37,7 +37,7 @@ $(document).ready(function(){
   </tr>
  </thead>
 <tbody>
-       <tr ng-repeat="blog in blogData">
+       <tr ng-repeat="blog in blogData" >
                         <td>{{blog.blogId}}</td>
                         <td>{{blog.username}}</td>
                         <td>{{blog.blogName}}</td>
@@ -45,12 +45,15 @@ $(document).ready(function(){
                         <td>{{blog.likes}}</td>
                         <td>{{blog.status}}</td>
                        <td colspan="10px">
-                            <button type="button" ng-click="incrementLike(blog.blogId)"  class="btn btn-info btn btn" ><span class="glyphicon glyphicon-thumbs-up"></span></a>
-                          <button type="button" ng-hide ="currentUser.userName!=blog.username"   ng-click="deleteBlog(blog.blogId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a></button>
-                            <button type="submit" ng-hide ="currentUser.userName!=blog.username"  ng-click="editBlog(blog.blogId)" class="btn btn-success" id="btnShowEditForm" data-target="#editBlogForm" data-toggle="modal" ><span class="glyphicon glyphicon-pencil"></span></a>
-                          <button type="submit" ng-hide ="currentUser.userName==blog.username"   ng-click="editBlog(blog.blogId)" 
+                       
+                            <button type="button" ng-hide="blog.status=='NA'" ng-click="incrementLike(blog.blogId)"  class="btn btn-info btn btn" ><span class="glyphicon glyphicon-thumbs-up"></span></a></button>
+                          <button type="button" ng-hide ="currentUser.userName!=blog.username || blog.status=='NA'"   ng-click="deleteBlog(blog.blogId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a></button>
+                            <button type="submit" ng-hide ="currentUser.userName!=blog.username || blog.status=='NA'"  ng-click="editBlog(blog.blogId)" class="btn btn-success" id="btnShowEditForm" data-target="#editBlogForm" data-toggle="modal" ><span class="glyphicon glyphicon-pencil"></span></a></button>
+                          <button type="submit" ng-hide ="currentUser.userName==blog.username || blog.status=='NA'"   ng-click="editBlog(blog.blogId)" 
                           class="btn btn-primary btn-md" id="btnShowAddComment" data-target="#addBlogComment" data-toggle="modal" >Comment</button>
-                          <button type="submit" ng-click="listblogComments(blog.blogId)"  class="btn btn-primary btn-md" id="btnShowComment" data-target="#viewBlogComment" data-toggle="modal" >View Comments</button>
+                          <button type="submit"  ng-hide="blog.status=='NA'" ng-click="listblogComments(blog.blogId)"  class="btn btn-primary btn-md" id="btnShowComment" data-target="#viewBlogComment" data-toggle="modal" >View Comments</button>
+                           <button type="button"  ng-hide="currentUser.role!='ROLE_ADMIN'" ng-click="approveBlog(blog.blogId)"  class="btn btn-info btn btn" >Approve</button>
+                             <button type="button"  ng-hide="currentUser.role!='ROLE_ADMIN'" ng-click="rejectBlog(blog.blogId)"  class="btn btn-info btn btn" >Reject</button>
          </tr>
  </tbody>
 </table>
@@ -91,7 +94,7 @@ $(document).ready(function(){
 						</div>
 						<div class=form-group>
 							<input type="submit" class="btn btn-lg btn-success"
-								value="Update Blog" ng-click="updateBlog(blog.blogId)" id="btnUpdateBlog"  > <input
+								value="Update Blog"  onclick="javascript:window.location.reload()" ng-click="updateBlog(blog.blogId)" id="btnUpdateBlog"  data-dismiss="modal" > <input
 								type="reset" class="btn btn-lg btn-default" value="Reset">
 						</div>
 					</form>

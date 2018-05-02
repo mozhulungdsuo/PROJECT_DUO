@@ -68,9 +68,10 @@ myApp.controller("BlogController", function($scope, $http, $location,$route) {
 			console.log('In edit blog');
 			console.log(blogId);
 			$scope.blog = response.data;			
-			//$location.path('/changeBlog');
+			
 		});
 	};
+	
 	$scope.updateBlog=function(blogId)
 	{
 		console.log('Enter into the update blog method');
@@ -82,6 +83,36 @@ myApp.controller("BlogController", function($scope, $http, $location,$route) {
 			        console.log('Status Text:'+response.statusText);
 			        $route.reload()			   
 			        $location.path("/listBlogs");
+			      
+				});
+	};
+	$scope.approveBlog=function(blogId)
+	{
+		console.log('Enter into the approve blog method');
+		console.log(blogId);
+		$http.put('http://localhost:8081/ChatMidWare/approve/'+blogId)
+		.then(function(response)
+				{
+			
+			        console.log('Status Text:'+response.statusText);
+			        $route.reload();
+					  $location.path('/listBlogs');
+			   
+			      
+				});
+	};
+	$scope.rejectBlog=function(blogId)
+	{
+		console.log('Enter into the reject blog method');
+		console.log(blogId);
+		$http.put('http://localhost:8081/ChatMidWare/rejectBlog/'+blogId)
+		.then(function(response)
+				{
+			
+			        console.log('Status Text:'+response.statusText);
+			        $route.reload();
+					  $location.path('/listBlogs');
+			   
 			      
 				});
 	};
@@ -131,6 +162,7 @@ myApp.controller("BlogController", function($scope, $http, $location,$route) {
 			
 		});
 	};
+	
 	/*function fetchAllBlogComments(blogId) {
 		console.log('In coomment method');
 		$http.get('http://localhost:8081/ChatMidWare/listBlogComments/{blogid}').then(

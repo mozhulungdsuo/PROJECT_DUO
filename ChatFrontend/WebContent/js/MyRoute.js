@@ -1,11 +1,11 @@
-var myApp=angular.module("myApp",['ngRoute',,'ngCookies']);
+var myApp=angular.module("myApp",['ngRoute','ngCookies']);
 
 myApp.config(function($routeProvider) {
 	$routeProvider.when("/", {
 		templateUrl : "/index.jsp"
 	})
 	.when("/Home",{
-		templateUrl :"/index.jsp"
+		templateUrl :"view/Home.html"
 	})
 	.when("/Login", {
 		templateUrl : "c_user/Login.html"
@@ -51,7 +51,7 @@ myApp.config(function($routeProvider) {
 	.when("/chat", {
 		templateUrl : "c_chat/chat.html"
 	})
-	.when("/friend", {
+	.when("/friend/", {
 	templateUrl : "c_friend/Friend.html"
     })
     .when("/manage",{

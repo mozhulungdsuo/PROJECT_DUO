@@ -1,9 +1,11 @@
 myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 {
-	$scope.friend={"userName":'',"frienduseName":'',"status":''};
+	$scope.friend={"friendId":'',"userName":'',"frienduseName":'',"status":''};
 	$scope.users={"userName":'',"password":'',"role":'',"email":'',"gender":'',"status":'',"dob":'',"status":'',"contactNo":'',"age":''};
-	
+	$scope.friendnumber;
 	$scope.suggestedFriend;
+	$scope.pendingRequest;
+	$scope.friendlist;
 	$scope.insertFriend = function(frienduseName) {
 		
 		
@@ -12,7 +14,29 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 					
 					console.log('Status Text ' + response.statusText);
 					$route.reload();					
+				
+			
+		});
+	};
+$scope.deleteFriend = function(friendId) {
+		
+		
+		$http.post('http://localhost:8081/ChatMidWare/deleteFriendRequest/'+friendId,
+				$scope.friend).then( function(response) {
 					
+					console.log('Status Text ' + response.statusText);
+					$route.reload();					
+				
+			
+		});
+	};
+	
+	$scope.acceptFriend=function(friendId){
+		$http.get('http://localhost:8081/ChatMidWare/acceptFriendRequest/'+friendId)
+		.then(function(response){
+			console.log('in accept request');
+			$route.reload();
+			$location.path("/friend");
 			
 		});
 	};
@@ -22,7 +46,31 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 		.then(function(response){
 			
 	       
-			$scope.users = response.data;	
+			$scope.suggestedFriend = response.data;	
+		});
+	};
+	$scope.showPendingFriends=function(userName){
+		$http.get('http://localhost:8081/ChatMidWare/showPendingRequest/'+userName)
+		.then(function(response){
+			
+	       
+			$scope.pendingRequest = response.data;	
+		});
+	};
+	$scope.showFriendsNumber=function(userName){
+		$http.get('http://localhost:8081/ChatMidWare/showPendingRequestNumber/'+userName)
+		.then(function(response){
+			
+	       
+			$scope.friendnumber = response.data;	
+		});
+	};
+	$scope.showAllFriends=function(userName){
+		$http.get('http://localhost:8081/ChatMidWare/showAllFriends/'+userName)
+		.then(function(response){
+			
+	       
+			$scope.friendlist = response.data;	
 		});
 	};
 	function friendData()

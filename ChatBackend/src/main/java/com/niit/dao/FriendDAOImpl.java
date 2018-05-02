@@ -61,8 +61,8 @@ public class FriendDAOImpl implements FriendDAO{
 		Session session=sessionFactory.openSession();
 		
 	
-		@SuppressWarnings("deprecation")
-		Query query=session.createSQLQuery("select * from UserDetails where userName not in(select frienduseName from Friend where userName='" +userName+"')");
+		
+		Query query=session.createQuery(" from UserDetails where userName not in(select frienduseName from Friend where userName='" +userName+"')");
 		List<UserDetails>suggestFriend=(List<UserDetails>)query.list();
 		return suggestFriend;
 	}
@@ -70,7 +70,7 @@ public class FriendDAOImpl implements FriendDAO{
 	public List<Friend> showAllFriends(String userName) 
 	{
 		Session session =sessionFactory.openSession();
-		Query query=session.createQuery("from Friend where userName=:currentuser and status='A' ");
+		Query query=session.createQuery("from Friend where userName=:currentuser and status='A' ");//or frienduseName=:currentuser
 		query.setParameter("currentuser", userName);
 		List<Friend> listFriends=query.list();
 		return listFriends;
@@ -79,7 +79,7 @@ public class FriendDAOImpl implements FriendDAO{
 	public List<Friend> showRequestPendingList(String userName) 
 	{
 		Session session =sessionFactory.openSession();
-		Query query=session.createQuery("from Friend where userName=:currentuser and status='P' ");
+		Query query=session.createQuery("from Friend where frienduseName=:currentuser and status='P' ");
 		query.setParameter("currentuser", userName);
 		List<Friend> listFriends=query.list();
 		return listFriends;

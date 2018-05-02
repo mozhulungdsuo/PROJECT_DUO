@@ -13,6 +13,7 @@ $scope.userdata;
      	{
 			console.log('Status Text:'+response.statusText);
 			$scope.msg="Data inserted sucessfully";
+			$route.reload();
 		
 	     });			
 	};

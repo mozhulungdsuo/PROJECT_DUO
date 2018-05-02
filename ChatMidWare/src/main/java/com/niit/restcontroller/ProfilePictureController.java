@@ -25,19 +25,19 @@ public class ProfilePictureController {
 	
     
     @RequestMapping(value="/doUpload",method=RequestMethod.POST)
-    public ResponseEntity<?> uploadPicture(@RequestParam(value="file1") CommonsMultipartFile fileupload,HttpSession session,UserDetails userDetails)
+    public void uploadPicture(@RequestParam(value="file1") CommonsMultipartFile fileupload,HttpSession session,UserDetails userDetails)
     {
     	 
       String user1=(String) session.getAttribute("userName");
     	 
         
-        if(userDetails==null) 
-        {
+        //if(userDetails==null) 
+        //{
         	
-            return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-        }
-        else
-        {
+           // return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+       // }
+       // else
+       // {
         
             ProfilePicture profilePicture=new ProfilePicture();
            
@@ -46,8 +46,8 @@ public class ProfilePictureController {
             profilePicture.setImage(fileupload.getBytes());
           
             profileUpdateDAO.save(profilePicture);
-            return new ResponseEntity<Void>(HttpStatus.OK);
-       }
+         //   return new ResponseEntity<Void>(HttpStatus.OK);
+      // }
     }
     
     @RequestMapping(value="/getImage/{userName}")

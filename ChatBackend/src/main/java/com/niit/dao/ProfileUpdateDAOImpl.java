@@ -18,10 +18,9 @@ public class ProfileUpdateDAOImpl implements ProfileUpdateDAO {
 	{
 		
 	   Session session=sessionFactory.getCurrentSession();
-		Object obj=session.get(ProfilePicture.class,profilePicture.getLoginName());
-     session.save(profilePicture);
-    session.flush();
-    
+		//Object obj=session.get(ProfilePicture.class,profilePicture.getLoginName());
+     session.saveOrUpdate(profilePicture);
+   
 	}
 @Transactional
 	public ProfilePicture getProfilePicture(String userName) 
