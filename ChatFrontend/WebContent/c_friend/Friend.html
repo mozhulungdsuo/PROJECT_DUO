@@ -7,7 +7,7 @@
  <button type="submit"  ng-click="showPendingFriends(currentUser.userName)" class="btn btn-primary btn-md" id="" 
  data-target="#pendingRequest" data-toggle="modal">
  Pending Request<span class="badge">{{friendnumber}}</span></button> 
- <button type="submit" ng-click="showAllFriends(currentUser.userName)" class="btn btn-primary btn-md" id="" 
+ <button type="submit" ng-click="showAllFriends(currentUser.userName);showAllFriendWith(currentUser.userName)" class="btn btn-primary btn-md" id="" 
  data-target="#allFriends" data-toggle="modal">
  View Friends
  </button>             
@@ -56,6 +56,7 @@
                            
                             
          </tr>
+         
  </tbody>
 </table>
 </div>
@@ -113,7 +114,7 @@
 </div>        
         
         
-        
+  <!-- ALL FRIENDS LIST -->      
   <div class="modal fade" id="allFriends" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog">
     <div class="modal-dialog">
     
@@ -144,6 +145,22 @@
                          
                           
                           <button type="submit" onclick="javascript:window.location.reload()" ng-click="deleteFriend(friend.friendId)"
+                           class="btn btn-default"  ng-init="showFriendsNumber(currentUser.userName)" data-dismiss="modal">Unfriend</button>
+                         
+                           
+                            
+         </tr>
+          <tr ng-repeat="friendwith in friendwithlist">
+                        
+                         <td><img id="img1" class="avatar" src="http://localhost:8081/ChatMidWare/getImage/{{friendwith.userName}}"
+                       
+                          width="40" height="40"></img></td>
+                        <td>{{friendwith.userName}}</td>                   
+                                        
+                       <td colspan="6px">
+                         
+                          
+                          <button type="submit" onclick="javascript:window.location.reload()" ng-click="deleteFriend(friendwith.friendId)"
                            class="btn btn-default"  ng-init="showFriendsNumber(currentUser.userName)" data-dismiss="modal">Unfriend</button>
                          
                            

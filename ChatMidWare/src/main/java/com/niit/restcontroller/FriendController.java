@@ -147,5 +147,28 @@ System.out.println(listPendingRequestsFriend.size()+" is pending");
 	}
 }
 
+
+
+@GetMapping(value="/showFriendWith/{userName}")
+public ResponseEntity<List<Friend>> showFriendWith(HttpSession session,@PathVariable("userName") String userName)
+{
+	
+   //String userName=((UserDetails)session.getAttribute("userName")).getUserName();
+   List<Friend>listAllFriend=friendDAO.showAllFriendsWith(userName);
+	
+	if(listAllFriend.size()>0)
+	{
+		return new ResponseEntity<List<Friend>>(listAllFriend,HttpStatus.OK);
+		
+	}
+	else
+	{
+		return new ResponseEntity<List<Friend>>(listAllFriend,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}
+
+
+
+
 }
 	

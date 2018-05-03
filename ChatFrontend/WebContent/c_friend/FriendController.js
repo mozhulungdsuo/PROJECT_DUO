@@ -6,6 +6,7 @@ myApp.controller("FriendController",function($scope,$http,$location,$rootScope)
 	$scope.suggestedFriend;
 	$scope.pendingRequest;
 	$scope.friendlist;
+	$scope.friendwithlist;
 	$scope.insertFriend = function(frienduseName) {
 		
 		
@@ -71,6 +72,14 @@ $scope.deleteFriend = function(friendId) {
 			
 	       
 			$scope.friendlist = response.data;	
+		});
+	};
+	$scope.showAllFriendWith=function(userName){
+		$http.get('http://localhost:8081/ChatMidWare/showFriendWith/'+userName)
+		.then(function(response){
+			
+	       
+			$scope.friendwithlist = response.data;	
 		});
 	};
 	function friendData()

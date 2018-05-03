@@ -20,8 +20,8 @@
 				<li ng-if="currentUser!=undefined" ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!displayJob">Job Lists</a></li>	
 				 <li ng-if="currentUser!=undefined" ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN'">
 				 <a href="#!Update">Profile</a></li>  					
-				<li ng-if="currentUser!=undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!chat">Chat</a></li>
-				<li ng-if="currentUser!=undefined"  ng-show="currentUser.role=='ROLE_USER'"><a href="#!friend">Friends</li>
+				<li ng-if="currentUser!=undefined"  ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN' "><a href="#!chat">Chat</a></li>
+				<li ng-if="currentUser!=undefined"  ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN'"><a href="#!friend">Friends</li>
 				
       </ul>
       <ul class="nav navbar-nav navbar-right" >
