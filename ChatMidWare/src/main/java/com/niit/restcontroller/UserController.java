@@ -92,19 +92,19 @@ public class UserController {
 	 @PostMapping(value="/login")
 	 public ResponseEntity<UserDetails>checklogin(@RequestBody UserDetails user)
 	 {
-		 //if(userDAO.checkLogin(user))
-		// {
+		 if(userDAO.checkLogin(user))
+		 {
 			 UserDetails user1=(UserDetails)userDAO.getUser(user.getUserName());
 			 userDAO.updateOnlineStatus("Y", user1);
 			 session.setAttribute("userName",user.getUserName());
 			 return new ResponseEntity<UserDetails>(user1,HttpStatus.OK);
 			 
-		 //}
-		 //
-		// else
-		// { System.out.println("Here and here");
-		//	 return new ResponseEntity<UserDetails>(user,HttpStatus.INTERNAL_SERVER_ERROR);
-		// }
+		 }
+		
+	 else
+		 { System.out.println("Here and here");
+		 return new ResponseEntity<UserDetails>(user,HttpStatus.INTERNAL_SERVER_ERROR);
+		 }
 	 }
 	 @GetMapping(value="/listUsers")
 		public ResponseEntity<List<UserDetails>> getListUsers()

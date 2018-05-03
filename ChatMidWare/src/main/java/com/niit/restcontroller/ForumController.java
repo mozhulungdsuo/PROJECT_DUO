@@ -61,7 +61,7 @@ public class ForumController {
 		forum.setCreatedate(new java.util.Date());
 	
 		forum.setUsername((String)session.getAttribute("userName"));
-		forum.setStatus("A");
+		forum.setStatus("NA");
 		if(forumDAO.addForum(forum))
 		{
 			return new ResponseEntity<String>("Success",HttpStatus.OK);
@@ -103,7 +103,7 @@ public class ForumController {
 		        }
 
 		                     forums.setForumName(forum.getForumName()); 
-		                    
+		                    forums.setForumContent(forum.getForumContent());
 		                       forumDAO.updateForum(forums);
 		        
 		        return new ResponseEntity<Forum>(forums, HttpStatus.OK);

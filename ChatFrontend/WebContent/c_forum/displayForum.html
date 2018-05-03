@@ -28,16 +28,25 @@
                         <td>{{forum.forumName}}</td>
                         <td>{{forum.forumContent}}</td>               
                         <td>{{forum.status}}</td>
-                       <td>                            
-                            <button type="button" ng-click="deleteForum(forum.forumId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+                       <td colspan="10px">                            
+                          <button type="button" ng-hide ="currentUser.userName!=forum.username || forum.status=='NA'|| currentUser.role=='ROLE_ADMIN'" 
+ng-click="deleteForum(forum.forumId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
                          </button>
-                         <button type="submit" ng-hide ="currentUser.userName==forum.username"   ng-click="editForum(forum.forumId)" 
-                          class="btn btn-primary btn-md" id="btnShowAddComment" 
-                          data-target="#addForumComment" data-toggle="modal" >Comment</button>
+<button type="button" ng-hide =" currentUser.role!='ROLE_ADMIN'"  ng-click="deleteForum(forum.forumId)" class="btn btn-danger" >
+<span class="glyphicon glyphicon-trash"></span></a></button>
+
+<button type="submit" ng-hide ="currentUser.userName!=forum.username || forum.status=='NA'"  ng-click="editForum(forum.forumId)"
+class="btn btn-success" id="btnShowEditForm" data-target="#editForumForm" data-toggle="modal" ><span class="glyphicon glyphicon-pencil"></span></a></button>
+
+<button type="submit" ng-hide ="currentUser.userName==forum.username || forum.status=='NA'"   ng-click="editForum(forum.forumId)" 
+class="btn btn-primary btn-md" id="btnShowAddComment" data-target="#addForumComment" data-toggle="modal" >Comment</button>
                           
-                          <button type="submit" ng-click="listForumComments(forum.forumId)"  
-                          class="btn btn-primary btn-md" id="btnShowComment"
-                           data-target="#viewForumComment" data-toggle="modal" >View Comments</button>
+<button type="submit" ng-hide="forum.status=='NA'" ng-click="listForumComments(forum.forumId)" class="btn btn-primary btn-md" id="btnShowComment"
+data-target="#viewForumComment" data-toggle="modal" >View Comments</button>
+<button type="button"  ng-hide="currentUser.role!='ROLE_ADMIN' || forum.status=='A'" ng-click="approveForum(forum.forumId)" 
+ class="btn btn-info btn btn" >Approve</button>
+<button type="button"  ng-hide="currentUser.role!='ROLE_ADMIN' || forum.status=='NA'" ng-click="rejectForum(forum.forumId)" 
+class="btn btn-info btn btn" >Reject</button>
                          </td>
                            
                           
@@ -131,6 +140,49 @@
   
 </div>
 </div>
+
+
+<!-- Edit forum part -->
+<div class="modal fade" id="editForumForm" tabindex="-1" data-keyboard="false" data-backdrop="static" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Forum</h4>
+        </div>
+        <div class="modal-body">
+          
+					<form class="col-md-12 center-block" id="forumForm" method="POST">
+					<div class="form-group">
+							<input type="hidden" class="form-control input-lg" name="blogId"
+							 ng-model="forum.forumId" />
+							 
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-lg" name="forumName"
+								placeholder="Forum name" ng-model="forum.forumName" />
+						</div>
+						<div class="form-group">
+							<textarea class="form-control input-lg" rows="3"
+								name="ForumContent" placeholder="Forum content"
+								ng-model="forum.forumContent"></textarea>
+						</div>
+						<div class=form-group>
+							<input type="submit" class="btn btn-lg btn-success"
+								value="Update Forum"  onclick="javascript:window.location.reload()" ng-click="updateForum(forum.forumId)" id="btnUpdateBlog"  data-dismiss="modal" > <input
+								type="reset" class="btn btn-lg btn-default" value="Reset">
+						</div>
+					</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
   
   
   

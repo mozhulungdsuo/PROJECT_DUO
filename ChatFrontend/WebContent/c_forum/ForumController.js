@@ -86,6 +86,50 @@ myApp.controller("ForumController",function($scope,$http,$location,$route)
 			
 		});
 	};
+	$scope.updateForum=function(forumId)
+	{
+		console.log('Enter into the update forum method');
+		console.log(forumId);
+		$http.put('http://localhost:8081/ChatMidWare/Updateforum/'+forumId,$scope.forum)
+		.then(fetchAllForum(),function(response)
+				{
+			
+			        console.log('Status Text:'+response.statusText);
+			        $route.reload()			   
+			        $location.path("/displayForum");
+			      
+				});
+	};
+	$scope.approveForum=function(forumId)
+	{
+		console.log('Enter into the approve forum method');
+		console.log(forumId);
+		$http.put('http://localhost:8081/ChatMidWare/approveforum/'+forumId)
+		.then(function(response)
+				{
+			
+			        console.log('Status Text:'+response.statusText);
+			        $route.reload();
+					  $location.path('/displayForum');
+			   
+			      
+				});
+	};
+	$scope.rejectForum=function(forumId)
+	{
+		console.log('Enter into the reject forum method');
+		console.log(forumId);
+		$http.put('http://localhost:8081/ChatMidWare/rejectforum/'+forumId)
+		.then(function(response)
+				{
+			
+			        console.log('Status Text:'+response.statusText);
+			        $route.reload();
+					  $location.path('/displayForum');
+			   
+			      
+				});
+	};
 	
 	function fetchAllForum()
 	{

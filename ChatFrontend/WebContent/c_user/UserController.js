@@ -57,12 +57,19 @@ $scope.userdata;
 					if($rootScope.currentUser.role=="ROLE_ADMIN")
 					{
 						console.log('AdminPage');
+						$location.path("/UserHome");
+					}
+					else if ($rootScope.currentUser.role=="ROLE_USER")
+					{
+						$location.path("/UserHome");
 					}
 					else
-					{
-						console.log('UserPage');
-					}
-					$location.path("/UserHome");
+						{
+						delete $rootScope.currentUser;
+						$cookieStore.remove('userDetails');
+						$location.path("/error")
+						
+						}
 			});
 	};
 	$rootScope.logout=function()

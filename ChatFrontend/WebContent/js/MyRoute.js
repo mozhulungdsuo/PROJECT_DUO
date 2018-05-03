@@ -60,7 +60,9 @@ myApp.config(function($routeProvider) {
     .when("/Update",{
     	templateUrl :"c_user/Update.html"
     })
-  
+   .when("/error",{
+    	templateUrl :"c_user/error.html"
+    })
 
 });
 
