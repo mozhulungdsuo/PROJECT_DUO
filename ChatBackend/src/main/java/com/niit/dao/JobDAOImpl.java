@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.ApplyJob;
+import com.niit.model.Friend;
 import com.niit.model.Job;
 @Repository("jobDAO")
 public class JobDAOImpl implements JobDAO {
@@ -101,6 +102,21 @@ public boolean updateJob(Job job) {
 	
 		List<Job> listJobs=query.list();
 		return listJobs;
+	}
+	public boolean getApplications(int jobid) {
+		Session session=sessionFactory.openSession();
+		Query query=session.createQuery(" from  ApplyJob where jobId=:jobId");
+		query.setParameter("jobId", jobid);
+		List<ApplyJob> listJobs=query.list();
+		if(listJobs.size()>0)
+		{
+			return true;
+		}
+		else
+		{
+		return false;
+		}
+		
 	}
 
 }

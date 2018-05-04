@@ -23,7 +23,7 @@
   </tr>
  </thead>
 <tbody>
-       <tr ng-repeat="job in jobdata">
+       <tr ng-repeat="job in jobdata"  >
                         
                         <td>{{job.company}}</td>
                         <td>{{job.jobDescription}}</td>
@@ -31,7 +31,11 @@
                         <td>{{job.finalDate}}</td>
                         <td>{{job.salary}}</td>
                        <td>                            
-                            <button type="button" ng-click="deleteJob(job.jobId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+                            <button ng-hide="currentUser.role=='ROLE_USER'"type="button" ng-click="deleteJob(job.jobId)" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span></a>
+                         </button>
+                          <button ng-hide="currentUser.role=='ROLE_ADMIN'"type="button" ng-click="applyJob(job.jobId);" id="btnApply" class="btn btn-primary btn-md" 
+                          data-somestringvalue-text="Job Applied" autocomplete="off" >
+                          Apply
                          </button>
                          </td>
                            
@@ -45,6 +49,8 @@
 </div>
 </div>
 </div>
+
+
 
 
 

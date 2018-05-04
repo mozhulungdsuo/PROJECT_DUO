@@ -10,6 +10,7 @@ public interface FriendDAO {
 	public boolean deleteFriendRequest(int friendId);
 	public List<UserDetails> showSuggestedFriend(String userName);
 	public List<Friend> showAllFriends(String userName);
+	public List<Friend> showAllFriendsWith(String userName) ;
 	public List<Friend> showRequestPendingList(String userName);
 	public boolean acceptFriendRequest(int friendId);
 

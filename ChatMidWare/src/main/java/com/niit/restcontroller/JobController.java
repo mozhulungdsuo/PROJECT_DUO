@@ -2,6 +2,8 @@ package com.niit.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -119,12 +121,13 @@ public class JobController {
 		
 		 
 		 
-		 @PostMapping(value="/applyJob"  )
-			public ResponseEntity<String>applyjob(@RequestBody ApplyJob app)
+		 @PostMapping(value="/applyJob/{jobId}"  )
+			public ResponseEntity<String>applyjob(@RequestBody ApplyJob app,@PathVariable("jobId") int jobId,HttpSession session)
 			{
 			
 				app.setApplyDate(new java.util.Date());
-				app.setJobId(555);
+				app.setJobId(jobId);
+				app.setUserName((String)session.getAttribute("userName"));
 				
 				
 				if(jobDAO.applyJob(app))
@@ -152,6 +155,18 @@ public class JobController {
 				return new ResponseEntity<List<ApplyJob>>(listApplyJobs,HttpStatus.OK);
 
 			}
-		 
+
+			@RequestMapping(value = "/checkApplication/{jobId}", method = RequestMethod.GET)
+		    public ResponseEntity<String> getApplication(@PathVariable("jobId") int jobId){
+		        
+		      boolean value= jobDAO.getApplications(jobId);
+
+		        if (value== false){
+		           
+		            return new ResponseEntity<String>("FAIL",HttpStatus.NOT_FOUND);
+		        }
+
+		        return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		    }
 	
 }

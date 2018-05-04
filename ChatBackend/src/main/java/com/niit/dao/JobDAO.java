@@ -12,6 +12,7 @@ public boolean updateJob(Job job);
 public Job getJob(int jobId);
 public List<Job> listJob(int jobId);
 public List<Job> listallJob();
+public boolean getApplications(int jobId);
 
 public boolean applyJob(ApplyJob job);
 public List<ApplyJob> getAllApplicationJobDetails();

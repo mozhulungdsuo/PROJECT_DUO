@@ -75,6 +75,14 @@ public class FriendDAOImpl implements FriendDAO{
 		List<Friend> listFriends=query.list();
 		return listFriends;
 	}
+	public List<Friend> showAllFriendsWith(String userName) 
+	{
+		Session session =sessionFactory.openSession();
+		Query query=session.createQuery("from Friend where frienduseName=:currentuser and status='A' ");//or frienduseName=:currentuser
+		query.setParameter("currentuser", userName);
+		List<Friend> listFriends=query.list();
+		return listFriends;
+	}
 
 	public List<Friend> showRequestPendingList(String userName) 
 	{

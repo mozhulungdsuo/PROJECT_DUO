@@ -17,7 +17,8 @@
 				<li ng-if="currentUser!=undefined" ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN'" ><a href="#!Forum">Forum</a>	</li>
 				<li ng-if="currentUser!=undefined" ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN'"><a href="#!displayForum">List Forums</a></li>
 				<li ng-if="currentUser!=undefined"  ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!Job">Job</a></li>
-				<li ng-if="currentUser!=undefined" ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!displayJob">Job Lists</a></li>	
+				<li ng-if="currentUser!=undefined" ng-show="currentUser.role=='ROLE_ADMIN'|| currentUser.role=='ROLE_USER'"><a href="#!displayJob">Job Lists</a></li>
+				<li ng-if="currentUser!=undefined"  ng-show="currentUser.role=='ROLE_ADMIN'"><a href="#!applicationList">Applications</a></li>	
 				 <li ng-if="currentUser!=undefined" ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN'">
 				 <a href="#!Update">Profile</a></li>  					
 				<li ng-if="currentUser!=undefined"  ng-show="currentUser.role=='ROLE_USER'||currentUser.role=='ROLE_ADMIN' "><a href="#!chat">Chat</a></li>

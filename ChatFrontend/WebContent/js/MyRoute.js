@@ -63,6 +63,9 @@ myApp.config(function($routeProvider) {
    .when("/error",{
     	templateUrl :"c_user/error.html"
     })
+    .when("/applicationList",{
+    	templateUrl :"c_job/applicationList.html"
+    })
 
 });
 

@@ -1,0 +1,39 @@
+<div ng-controller="JobController">
+  
+<div class="modal-dialog  modal-lg" style="width: 100%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="text-center">Application Details</h1>
+			</div>
+			<div class="modal-body">
+
+<div class="table-responsive">
+<table class="table table-hover">
+ <thead>
+ <tr>
+ 
+  <th>Application Id</th>
+  <th>Job Id</th> 
+  <th>Name</th>                  
+  <th>Applied date</th>
+
+  </tr>
+ </thead>
+<tbody>
+       <tr ng-repeat="apply in applydata" >
+                        
+                        <td>{{apply.applicationId}}</td>
+                        <td>{{apply.jobId}}</td>
+                        <td>{{apply.userName}}</td>               
+                        <td>{{apply.applyDate}}</td>
+                                                 
+                          
+         </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
